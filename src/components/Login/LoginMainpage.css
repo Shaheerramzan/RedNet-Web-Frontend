@@ -1,0 +1,16 @@
+.login-main-div {
+    text-align: center;
+    background-color: #333333;
+    border: red solid 3px;
+    border-radius: 5px;
+    opacity: 60%;
+    width: 450px;
+    height: 550px;
+}
+.login-text-div {
+    padding-top: 15px;
+    text-align: center;
+    font-size: 45px;
+    font-weight: bolder;
+}
+

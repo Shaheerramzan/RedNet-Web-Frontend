@@ -1,0 +1,28 @@
+
+
+                        <Form.Group controlId="formGender">
+                            <Form.Label >Gender<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></Form.Label>
+                            <select type="select" className="mdb-select" id="fieldOne">
+                                <option value="0">Male</option>
+                                <option value="1">Female</option>
+                            </select>
+                        </Form.Group>
+
+                        <Form.Group controlId="formBloodGroup">
+                            <Form.Label>Bloodgroup<span>&nbsp;&nbsp;&nbsp;</span></Form.Label>
+                            <select type="select" className="mdb-select" id="fieldOne">
+                                <option value="A+">A+</option>
+                                <option value="A">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B">B-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                            </select>
+                        </Form.Group>
+
+                        <Button variant="primary" type="submit">
+                            Edit
+                        </Button>
+</Form>
