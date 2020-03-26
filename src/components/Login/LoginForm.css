@@ -13,6 +13,9 @@
 .input-container {
   padding-right: 30px;
 }
+.form-group {
+  margin-bottom: 0;
+}
 .form-control {
   height: 45px;
   font-size: 20px;

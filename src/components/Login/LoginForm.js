@@ -39,7 +39,7 @@ const renderField = ({ type, label, placeholder, input, meta: {touched, error} }
 
 const LoginForm = (props) => {
     console.log(props);
-    const { handelSubmit, pristine, submitting } = props;
+    const { handelSubmit } = props;
   return (
     <Form className="login-form" onSubmit={handelSubmit}>
       <Field
@@ -57,7 +57,7 @@ const LoginForm = (props) => {
         type="password"
       />
       <div className="button-div">
-        <button type="submit" className="btn btn-danger" disabled={pristine || submitting}>
+        <button type="submit" className="btn btn-danger" >
           Login
         </button>
       </div>
