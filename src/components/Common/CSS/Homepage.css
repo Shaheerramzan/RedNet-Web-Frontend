@@ -1,0 +1,28 @@
+.left-panel {
+    text-align: center;
+    height: 100%;
+    background-color: #D9D9D9;
+}
+.left-panel-header {
+    padding-top: 30px;
+}
+.left-panel-option.col {
+    padding-top: 10px;
+    padding-left: 0;
+    padding-right: 0;
+}
+.left-row {
+    height: 85%;
+}
+.option-box {
+    padding-top: 5px;
+    border: 1px black solid;
+    border-left: none;
+    border-right: none;
+    height: 2em;
+    font-size: 30px;
+}
+.option-text {
+    font-weight: normal;
+}
+

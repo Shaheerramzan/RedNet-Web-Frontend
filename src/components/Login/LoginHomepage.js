@@ -2,8 +2,9 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-import Header from "./Header";
-import "./LoginHomepage.css";
+import Header from "../Common/Components/Header";
+import "../Common/CSS/CommonClasses.css"
+import "./CSS/LoginHomepage.css";
 
 const BloodDrop = ({ text, link }) => {
   return (

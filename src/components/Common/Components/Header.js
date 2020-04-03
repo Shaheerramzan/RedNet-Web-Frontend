@@ -1,6 +1,7 @@
-import "./Header.css";
 import { Row, Col, Navbar } from "react-bootstrap";
 import React from "react";
+
+import "../CSS/Header.css";
 
 const HeaderLogo = () => {
   return (
@@ -12,8 +13,8 @@ const HeaderLogo = () => {
   );
 };
 
-const Header = ForHomepage => {
-  if (ForHomepage.ForHomepage === true)
+const Header = ({ForHomepage, Name}) => {
+  if (ForHomepage === true)
     return (
       <Row className="main-header">
         <HeaderLogo />
@@ -28,6 +29,11 @@ const Header = ForHomepage => {
     return (
       <Row className="main-header">
         <HeaderLogo />
+        <Col className="Name">
+          <Navbar.Text className="white header-name-text">
+            {Name}
+          </Navbar.Text>
+        </Col>
       </Row>
     );
 };

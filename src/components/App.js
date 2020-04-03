@@ -6,7 +6,7 @@ import "./App.css";
 import LoginHomepage from "./Login/LoginHomepage";
 import LoginMainPage from "./Login/LoginMainPage";
 import SocietyAdminHomepage from "./SocietyAdmin/SocietyAdminHomepage";
-import SocietyHeadHomepage from "./SocietyHead/SocietyheadHomepage";
+import SocietyHeadHomepage from "./SocietyHead/SocietyHeadHomepage";
 import SuperAdminHomepage from "./SuperAdmin/SuperAdminHomepage";
 import createDonor from "./SocietyAdmin/createDonor";
 import editDonor from "./SocietyAdmin/editDonor";
@@ -17,10 +17,10 @@ function App() {
       <Route exact path={"/"} component={LoginHomepage} />
       <Route exact path={"/:name/Login"} component={LoginMainPage} />
       <Route exact path={"/society-admin/"} component={SocietyAdminHomepage} />
-      <Route exact path={"/society-admin/create"} component={createDonor} />
-      <Route exact path={"/society-admin/:id/edit"} component={editDonor} />
       <Route exact path={"/society-head/"} component={SocietyHeadHomepage} />
       <Route exact path={"/super-admin/"} component={SuperAdminHomepage} />
+      <Route exact path={"/society-admin/create"} component={createDonor} />
+      <Route exact path={"/society-admin/:id/edit"} component={editDonor} />
     </BrowserRouter>
   );
 }

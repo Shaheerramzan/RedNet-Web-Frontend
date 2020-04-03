@@ -1,17 +1,24 @@
 import React from "react";
-import {Container} from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
-import Header from "../Login/Header";
-import "../Login/LoginHomepage.css"
+import Header from "../Common/Components/Header";
+import HomePage from "../Common/Components/HomePage";
 
-const SuperAdminHomepage = () =>{
+import "../Common/CSS/CommonClasses.css";
+import "../Common/CSS/Homepage.css";
 
-    return (
-        <Container fluid className="bg-img">
-            <Header ForHomepage={false} />
-        </Container>
+class SuperAdminHomepage extends React.Component {
+    componentDidMount() {
+    }
 
-    );
-};
+    render() {
+        return (
+            <Container fluid className="bg-img">
+                <Header ForHomepage={false} Name="Super Admin" />
+                <HomePage component="Super Admin" Name="Shaheer"/>
+            </Container>
+        );
+    }
+}
 
 export default SuperAdminHomepage;

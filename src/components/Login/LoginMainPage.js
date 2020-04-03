@@ -2,10 +2,10 @@ import React from "react";
 import {connect} from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
 
-import Header from "./Header";
+import Header from "../Common/Components/Header";
 import LoginForm from "./LoginForm";
-import "./LoginHomepage.css";
-import "./LoginMainpage.css";
+import "../Common/CSS/CommonClasses.css";
+import "./CSS/LoginMainpage.css";
 
 class LoginMainPage extends React.Component {
   render() {
