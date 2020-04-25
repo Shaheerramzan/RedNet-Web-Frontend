@@ -1,5 +1,5 @@
 import React from "react";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
 
 import Header from "../Common/Components/Header";
@@ -12,14 +12,14 @@ class LoginMainPage extends React.Component {
     const Name = this.props.location.state.text;
     return (
       <Container fluid className="bg-img">
-        <Header ForHomepage={false} />
+        <Header ForHomepage="2" />
         <Row>
           <Col className="login-col">
             <Container className="login-main-div">
               <div className="login-text-div">
                 <span className="white">{Name}</span>
               </div>
-              <LoginForm />
+              <LoginForm Name={this.props.match.params.name} />
             </Container>
           </Col>
         </Row>

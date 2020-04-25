@@ -14,7 +14,7 @@ class SuperAdminHomepage extends React.Component {
     render() {
         return (
             <Container fluid className="bg-img">
-                <Header ForHomepage={false} Name="Super Admin" />
+                <Header ForHomepage="3" Name="Super Admin" />
                 <HomePage component="Super Admin" Name="Shaheer"/>
             </Container>
         );

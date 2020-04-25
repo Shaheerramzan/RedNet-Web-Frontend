@@ -1,35 +1,38 @@
 .img-div {
-    width: auto;
-    height: auto;
+  width: auto;
+  height: auto;
 }
 .blood-img.container {
-    padding: 0;
+  padding: 0;
 }
 .blood-img {
-    background-image: url("../../../images/BloodDrop.png");
-    background-size: cover;
-    transition: width 700ms, height 700ms, transform 1s;
+  background-image: url("../../../images/BloodDrop.png");
+  background-size: cover;
+  transition: width 700ms, height 700ms, transform 1s;
 }
-.blood-img, .blood-text-div {
-    width: 270px;
-    height: 437px;
-}
-.blood-img:hover , .blood-text-div:hover{
-     height: 500px;
-     width: 310px;
- }
+.blood-img,
 .blood-text-div {
-    text-align: center;
-    padding-top: 280px;
-    font-size: 30px;
-    transition: width 700ms, height 700ms, padding-top 700ms, font-size 700ms, text-decoration 700ms;
+  width: 270px;
+  height: 437px;
+}
+.blood-img:hover,
+.blood-text-div:hover {
+  height: 500px;
+  width: 310px;
+}
+.blood-text-div {
+  text-align: center;
+  padding-top: 280px;
+  font-size: 30px;
+  transition: width 700ms, height 700ms, padding-top 700ms, font-size 700ms,
+    text-decoration 700ms;
 }
 .blood-text-div:hover {
-    padding-top: 343px;
-    font-size: 35px;
-    text-decoration: underline;
+  padding-top: 343px;
+  font-size: 35px;
+  text-decoration: underline;
 }
 .blood-text-span {
-    text-decoration: inherit;
-    font-size: inherit;
+  text-decoration: inherit;
+  font-size: inherit;
 }

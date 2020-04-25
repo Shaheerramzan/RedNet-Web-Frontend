@@ -1,0 +1,10 @@
+.red {
+    color: red;
+}
+.createDonorTag {
+    padding-top: 15px;
+    cursor: pointer;
+}
+.deleteIcon {
+  cursor: pointer;
+}

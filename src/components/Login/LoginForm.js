@@ -1,12 +1,16 @@
 import React from "react";
+// import { Link } from "react-router-dom";
 import { Container, Form } from "react-bootstrap";
 import { Field, reduxForm } from "redux-form";
-import GetDonors from "../../apis/GetDonors";
+import { Redirect } from "react-router-dom";
+
+import { doLogin } from "../../actions";
 
 import "../Common/CSS/CommonClasses.css";
 import "./CSS/LoginForm.css";
+import { connect } from "react-redux";
 
-const validate = (values, props) => {
+const validate = (values) => {
   const errors = {};
   if (!values.name) {
     errors.name = "Enter Name Or Email";
@@ -18,6 +22,11 @@ const validate = (values, props) => {
 };
 
 class LoginForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+    this.state = { HomepageLink: `/${this.props.Name}`, Name: null };
+  }
   renderField = ({
     type,
     label,
@@ -42,19 +51,34 @@ class LoginForm extends React.Component {
   };
 
   onSubmit = ({ username, password }) => {
-    GetDonors.get("/person/", {
-      username,
-      password,
-    })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    this.props.doLogin({ username, password });
+    // BackendLink.post(
+    //   "/login.action",
+    //   `username=${username}&password=${password}`
+    // )
+    //   // .then(()=> {browserHistory.push(/society-admin/)})
+    //   //   .then(()=> Response.redirect("/society-admin/"))
+    //   .then(({ data: { firstname } }) => {
+    //     console.log(firstname);
+    //     this.setState({ Name: firstname });
+    //     // history.push("/society-admin/");
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
   };
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    //count += 1;
+    //console.log(count);
+    //console.log(this.props);
+  }
+
   render() {
+    if (this.props.isLogin === true) {
+      return <Redirect to={`/${this.props.Name}/`} />;
+    } else if (this.props.isLogin === false)
+      alert("Please Enter Correct Username or password");
     return (
       <Form
         onSubmit={this.props.handleSubmit(this.onSubmit)}
@@ -75,13 +99,21 @@ class LoginForm extends React.Component {
           type="password"
         />
         <div className="button-div">
+          {/*<Link to={this.state.HomepageLink}>*/}
           <button type="submit" className="btn btn-danger">
             Login
           </button>
+          {/*</Link>*/}
         </div>
       </Form>
     );
   }
 }
+
+function mapStateToProps(state) {
+  return { isLogin: state.login.isLogin };
+}
+
+LoginForm = connect(mapStateToProps, { doLogin })(LoginForm);
 
 export default reduxForm({ form: "LoginForm", validate })(LoginForm);

@@ -1,11 +1,10 @@
 .bg-img {
-    background-image: url("../../../images/LoginBackground.png");
-    height: 100vh;
-    background-position: center;
-    background-repeat: repeat;
-    background-size: cover;
+  background-image: url("../../../images/LoginBackground.png");
+  height: 100vh;
+  background-position: center;
+  background-repeat: repeat;
+  background-size: cover;
 }
-.white
-{
-    color: white;
+.white {
+  color: white;
 }

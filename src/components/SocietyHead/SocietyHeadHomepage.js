@@ -14,7 +14,7 @@ class SocietyHeadHomepage extends React.Component {
   render() {
     return (
       <Container fluid className="bg-img">
-        <Header ForHomepage={false} Name="Society Head" />
+        <Header ForHomepage="3" Name="Society Head" />
         <HomePage component="Society Head" Name="Shaheer"/>
       </Container>
     );

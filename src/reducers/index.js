@@ -1,11 +1,10 @@
 import { combineReducers } from "redux";
-import donorListReducer from "./donorListReducer"
-import donorEditReducer from "./donorReducer"
-import { reducer as formReducer } from "redux-form"
+import donorsReducer from "./donorsReducer";
+import { reducer as formReducer } from "redux-form";
+import loginReducer from "./loginReducer";
 
 export default combineReducers({
-    donors: donorListReducer,
-    donor: donorEditReducer,
-    form: formReducer
+  donors: donorsReducer,
+  form: formReducer,
+  login: loginReducer,
 });
-

@@ -5,7 +5,8 @@
   padding-top: 50px;
   text-align: center;
 }
-.btn, .btn-danger {
+.btn,
+.btn-danger {
   font-size: 25px;
   width: 150px;
   height: 50px;

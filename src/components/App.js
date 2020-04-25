@@ -8,10 +8,18 @@ import LoginMainPage from "./Login/LoginMainPage";
 import SocietyAdminHomepage from "./SocietyAdmin/SocietyAdminHomepage";
 import SocietyHeadHomepage from "./SocietyHead/SocietyHeadHomepage";
 import SuperAdminHomepage from "./SuperAdmin/SuperAdminHomepage";
-import createDonor from "./SocietyAdmin/createDonor";
-import editDonor from "./SocietyAdmin/editDonor";
+import ManageDonors from "./SocietyAdmin/ManageDonors";
+
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+import {
+  faCheckSquare,
+  faCoffee,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 
 function App() {
+  library.add(fab, faCheckSquare, faCoffee, faTrash);
   return (
     <BrowserRouter>
       <Route exact path={"/"} component={LoginHomepage} />
@@ -19,8 +27,7 @@ function App() {
       <Route exact path={"/society-admin/"} component={SocietyAdminHomepage} />
       <Route exact path={"/society-head/"} component={SocietyHeadHomepage} />
       <Route exact path={"/super-admin/"} component={SuperAdminHomepage} />
-      <Route exact path={"/society-admin/create"} component={createDonor} />
-      <Route exact path={"/society-admin/:id/edit"} component={editDonor} />
+      <Route exact path={"/test/"} component={ManageDonors} />
     </BrowserRouter>
   );
 }
