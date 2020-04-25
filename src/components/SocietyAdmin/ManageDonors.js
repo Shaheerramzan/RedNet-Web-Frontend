@@ -41,13 +41,24 @@ class ManageDonors extends Component {
         <Row>
           <Col>
             <h1 className="float-left">Donors List</h1>
-            <h3 className="float-right red createDonorTag">
-              <u>Create Donor</u>
-            </h3>
+          </Col>
+          <Col>
+            <Row className="createDonorTag">
+              <Col>
+                <h4 className="red">
+                  <u>Add Donor List</u>
+                </h4>
+              </Col>
+              <Col>
+                <input className="float-right" type="file" />
+              </Col>
+            </Row>
           </Col>
         </Row>
         <Container>
           <ul className="list-group">
+            <this.renderDonors />
+            <this.renderDonors />
             <this.renderDonors />
           </ul>
         </Container>

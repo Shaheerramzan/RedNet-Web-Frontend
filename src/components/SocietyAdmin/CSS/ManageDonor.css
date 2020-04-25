@@ -2,8 +2,9 @@
     color: red;
 }
 .createDonorTag {
-    padding-top: 15px;
+    padding-top: 25px;
     cursor: pointer;
+    text-align: right;
 }
 .deleteIcon {
   cursor: pointer;
