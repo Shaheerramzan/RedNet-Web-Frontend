@@ -55,10 +55,8 @@ class ManageDonors extends Component {
             </Row>
           </Col>
         </Row>
-        <Container>
+        <Container className="scroll">
           <ul className="list-group">
-            <this.renderDonors />
-            <this.renderDonors />
             <this.renderDonors />
           </ul>
         </Container>

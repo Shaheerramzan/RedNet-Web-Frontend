@@ -9,3 +9,8 @@
 .deleteIcon {
   cursor: pointer;
 }
+.scroll {
+    max-height: 78vh;
+    height: auto;
+    overflow: scroll auto;
+}
