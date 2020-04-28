@@ -1,14 +1,11 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import {Container} from "react-bootstrap";
 
 class CreateDonor extends React.Component {
   render() {
     return (
       <div>
         <Container>
-          <div>
-            <h1 className="text-center">Create Donor</h1>
-          </div>
           <form>
             <div className="form-group">
               <label htmlFor="exampleFormControlInput1">Email address</label>
