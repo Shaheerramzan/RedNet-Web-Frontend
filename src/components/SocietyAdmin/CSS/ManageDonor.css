@@ -1,6 +1,7 @@
 .red {
     color: red;
 }
+
 .createDonorTag {
     padding-top: 25px;
     text-align: right;
@@ -43,4 +44,17 @@
 
 .center {
     text-align: center;
+}
+
+.showDonorDetailText {
+    padding-right: 10px;
+    cursor: pointer;
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
 }

@@ -11,15 +11,14 @@ export const getDonors = () => async (dispatch) => {
   dispatch({ type: "GET_DONORS", payload: response.data });
 };
 
-export const createDonor = () => async (dispatch) => {
-  const response = await BackendLink.get("/person");
-  dispatch({ type: "GET_DONORS", payload: response.data });
+export const createDonor = (data) => async (dispatch) => {
+  const response = await BackendLink.post("/create.action", data);
+  if (response.status === 200)
+    dispatch({type: "ADD_DONORS", payload: response.data});
 };
 
 export const deleteDonor = (id) => async (dispatch) => {
-  console.log("here");
   const response = await TemplateLink.delete(`/posts/${id}`);
-  console.log(response);
   if (response.status === 200) dispatch({ type: "DELETE_DONOR", payload: id });
 };
 
