@@ -1,10 +1,15 @@
 .left-panel {
-  text-align: center;
-  height: 100%;
-  background-color: #d9d9d9;
+    text-align: center;
+    height: 100%;
+    background-color: #d9d9d9;
 }
+
+.jumbotron-fluid.bg-clr {
+    color: #2c2c2e;
+}
+
 .left-panel-header {
-  padding-top: 30px;
+    padding-top: 30px;
 }
 .left-panel-option.col {
   padding-top: 10px;
@@ -21,12 +26,12 @@
   text-decoration: none;
 }
 .option-box {
-  padding-top: 5px;
-  border: 1px none black;
-  border-top-style: solid;
-  height: 2em;
-  font-size: 30px;
-  cursor: pointer;
+    padding-top: 5px;
+    border: 1px none black;
+    border-top-style: solid;
+    font-size: 30px;
+    cursor: pointer;
+    word-wrap: break-word;
 }
 .option-text {
   font-weight: normal;
@@ -39,9 +44,14 @@
   background-color: #d9d9d9;
   color: black;
 }
+
 .right-panel-div {
-  background-color: #d9d9d9;
-  padding-left: 20px;
-  border-radius: 3px;
-  display: none;
+    background-color: #d9d9d9;
+    padding-left: 20px;
+    border-radius: 3px;
+    display: none;
+}
+
+.user-name {
+    font-size: 20px;
 }

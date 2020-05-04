@@ -2,7 +2,7 @@
     color: red;
 }
 
-.createDonorTag {
+.createEntityTag {
     padding-top: 25px;
     text-align: right;
 }
@@ -25,7 +25,7 @@
     padding-left: 5px;
 }
 
-.createDonorCol {
+.createEntityCol {
     padding-top: 10px;
     padding-bottom: 5px;
 }
@@ -46,7 +46,7 @@
     text-align: center;
 }
 
-.showDonorDetailText {
+.showEntityDetailText {
     padding-right: 10px;
     cursor: pointer;
 }

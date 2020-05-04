@@ -8,7 +8,7 @@ import "../Common/CSS/CommonClasses.css";
 import "../Common/CSS/Homepage.css";
 
 import ManageDonors from "./ManageDonors";
-import Complains from "./Complains";
+import Complains from "./Complaints";
 
 class SocietyAdminHomepage extends React.Component {
   render() {
@@ -16,8 +16,8 @@ class SocietyAdminHomepage extends React.Component {
       <Container fluid className="bg-img">
         <Header ForHomepage="3" Name="Society Admin" />
         <HomePage component="Society Admin">
-          <ManageDonors />
-          <Complains />
+	        <ManageDonors userType={1}/>
+	        <Complains/>
         </HomePage>
       </Container>
     );
