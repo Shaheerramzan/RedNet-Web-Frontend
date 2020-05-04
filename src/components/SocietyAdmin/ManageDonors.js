@@ -1,8 +1,8 @@
-import React, {Component} from "react";
-import {connect} from "react-redux";
-import {deleteDonor, getDonor, getDonors} from "../../actions";
-import {Button, Col, Container, Form, Row} from "react-bootstrap";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { deleteDonor, getDonor, getDonors } from "../../actions";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./CSS/ManageDonor.css";
 import CreateDonor from "./CreateDonor";
@@ -10,12 +10,12 @@ import CreateDonor from "./CreateDonor";
 class ManageDonors extends Component {
   constructor(props) {
     super(props);
-    this.state = {createDonorClicked: false, donors: {}, renderMe: true};
+    this.state = { createDonorClicked: false, donors: {}, renderMe: true };
   }
 
   componentDidMount() {
     this.props.getDonors();
-    this.setState({renderMe: this.props.renderMe});
+    this.setState({ renderMe: this.props.renderMe });
   }
 
   deleteDonor = (id) => {
@@ -23,7 +23,7 @@ class ManageDonors extends Component {
   };
 
   showDonor = (id) => {
-    this.setState({donorId: id});
+    this.setState({ donorId: id });
     let editText = document.getElementById(`donorShowDetailButton${id}`);
     let donorDetail = document.getElementById(`donorDetailDiv${id}`);
 
@@ -38,142 +38,138 @@ class ManageDonors extends Component {
     }
     if (!this.state.donors[`donor${id}`]) {
       this.props.getDonor(id);
+      let v = this.state.donors;
+      v[`donor${id}`] = this.props.donor;
+      this.setState({
+        donors: v,
+      });
     }
   };
 
   fillDetailForm = ({
-                      donorId,
-                      personId: {
-                        area,
-                        bloodGroup,
-                        city,
-                        email,
-                        firstName,
-                        lastName,
-                        gender,
-                        phone1,
-                        username,
-                      },
-                    }) => {
+    donorId,
+    personId: {
+      area,
+      bloodGroup,
+      city,
+      email,
+      firstName,
+      lastName,
+      gender,
+      phone1,
+      username,
+    },
+  }) => {
     return (
-        <Container id={`donorDetail${donorId}`}>
-          <Form>
-            <Row>
-              <Col className="form-group">
-                <label htmlFor="First Name">First Name</label>
-                <input
-                    type="text"
-                    readOnly
-                    className="form-control"
-                    value={firstName}
-                />
-              </Col>
-              <Col className="form-group">
-                <label htmlFor="Last Name">Last Name</label>
-                <input
-                    type="text"
-                    readOnly
-                    className="form-control"
-                    value={lastName}
-                />
-              </Col>
-            </Row>
-            <Row>
-              <Col className="form-group">
-                <label htmlFor="Username">Username</label>
-                <input
-                    type="text"
-                    readOnly
-                    className="form-control"
-                    value={username}
-                />
-              </Col>
-            </Row>
-            <Row>
-              <Col className="form-group">
-                <label htmlFor="E-mail">E-mail</label>
-                <input
-                    type="email"
-                    readOnly
-                    className="form-control"
-                    value={email}
-                />
-              </Col>
-              <Col className="form-group">
-                <label htmlFor="Phone Number">Phone Number</label>
-                <input
-                    type="text"
-                    readOnly
-                    className="form-control"
-                    value={phone1}
-                />
-              </Col>
-            </Row>
-            <Row>
-              <Col className="form-group">
-                <label htmlFor="City">City</label>
-                <input
-                    type="text"
-                    readOnly
-                    className="form-control"
-                    value={city}
-                />
-              </Col>
-              <Col className="form-group">
-                <label htmlFor="Area">Area</label>
-                <input
-                    type="text"
-                    readOnly
-                    className="form-control"
-                    value={area}
-                />
-              </Col>
-            </Row>
-            <Row>
-              <Col className="form-group">
-                <label htmlFor="Gender">Gender</label>
-                <select className="form-control" disabled={true} value={gender}>
-                  <option>female</option>
-                  <option>male</option>
-                </select>
-              </Col>
-              <Col className="form-group">
-                <label htmlFor="Blood Group">Blood Group</label>
-                <select
-                    className="form-control"
-                    disabled={true}
-                    value={bloodGroup}
-                >
-                  <option>O+</option>
-                  <option>O-</option>
-                  <option>A+</option>
-                  <option>A-</option>
-                  <option>B+</option>
-                  <option>B-</option>
-                  <option>AB+</option>
-                  <option>AB-</option>
-                </select>
-              </Col>
-            </Row>
-          </Form>
-        </Container>
+      <Container id={`donorDetail${donorId}`}>
+        <Form>
+          <Row>
+            <Col className="form-group">
+              <label htmlFor="First Name">First Name</label>
+              <input
+                type="text"
+                readOnly
+                className="form-control"
+                value={firstName}
+              />
+            </Col>
+            <Col className="form-group">
+              <label htmlFor="Last Name">Last Name</label>
+              <input
+                type="text"
+                readOnly
+                className="form-control"
+                value={lastName}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col className="form-group">
+              <label htmlFor="Username">Username</label>
+              <input
+                type="text"
+                readOnly
+                className="form-control"
+                value={username}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col className="form-group">
+              <label htmlFor="E-mail">E-mail</label>
+              <input
+                type="email"
+                readOnly
+                className="form-control"
+                value={email}
+              />
+            </Col>
+            <Col className="form-group">
+              <label htmlFor="Phone Number">Phone Number</label>
+              <input
+                type="text"
+                readOnly
+                className="form-control"
+                value={phone1}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col className="form-group">
+              <label htmlFor="City">City</label>
+              <input
+                type="text"
+                readOnly
+                className="form-control"
+                value={city}
+              />
+            </Col>
+            <Col className="form-group">
+              <label htmlFor="Area">Area</label>
+              <input
+                type="text"
+                readOnly
+                className="form-control"
+                value={area}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col className="form-group">
+              <label htmlFor="Gender">Gender</label>
+              <select className="form-control" disabled={true} value={gender}>
+                <option>female</option>
+                <option>male</option>
+              </select>
+            </Col>
+            <Col className="form-group">
+              <label htmlFor="Blood Group">Blood Group</label>
+              <select
+                className="form-control"
+                disabled={true}
+                value={bloodGroup}
+              >
+                <option>O+</option>
+                <option>O-</option>
+                <option>A+</option>
+                <option>A-</option>
+                <option>B+</option>
+                <option>B-</option>
+                <option>AB+</option>
+                <option>AB-</option>
+              </select>
+            </Col>
+          </Row>
+        </Form>
+      </Container>
     );
   };
 
-  setTheState = (id) => {
-    let v = this.state.donors;
-    v[`donor${id}`] = this.props.donor;
-    this.setState({
-      donors: v,
-    });
-  };
+  setTheState = (id) => {};
 
   renderDonorDetail = (id) => {
     if (this.props.donor) {
       if (this.props.donor.donorId === id) {
-        if (!this.state.donors[`donor${id}`]) {
-          this.setTheState(id);
-        }
         return this.fillDetailForm(this.props.donor);
       } else {
         if (this.state.donors[`donor${id}`]) {
@@ -181,7 +177,7 @@ class ManageDonors extends Component {
         }
       }
     } else {
-      return <Container id={`donorDetail${id}`}/>;
+      return <Container id={`donorDetail${id}`} />;
     }
   };
 
@@ -189,100 +185,100 @@ class ManageDonors extends Component {
     if (this.props.donorsList)
       return this.props.donorsList.map((donor, index) => {
         return (
-            <li className="list-group-item" key={donor.donorId}>
-              {`${donor.personId.firstName} ${donor.personId.lastName}`}
-              <div className="float-right red">
+          <li className="list-group-item" key={donor.donorId}>
+            {`${donor.personId.firstName} ${donor.personId.lastName}`}
+            <div className="float-right red">
               <span
-                  className="showDonorDetailText"
-                  id={`donorShowDetailButton${donor.donorId}`}
-                  onClick={this.showDonor.bind(this, donor.donorId)}
+                className="showDonorDetailText"
+                id={`donorShowDetailButton${donor.donorId}`}
+                onClick={this.showDonor.bind(this, donor.donorId)}
               >
                 show detail
               </span>
-                <FontAwesomeIcon
-                    className="deleteIcon"
-                    icon="trash"
-                    size="lg"
-                    onClick={this.deleteDonor.bind(this, donor.donorId)}
-                />
-              </div>
-              <div id={`donorDetailDiv${donor.donorId}`} className="hide">
-                {this.renderDonorDetail(donor.donorId, index)}
-              </div>
-            </li>
+              <FontAwesomeIcon
+                className="deleteIcon"
+                icon="trash"
+                size="lg"
+                onClick={this.deleteDonor.bind(this, donor.donorId)}
+              />
+            </div>
+            <div id={`donorDetailDiv${donor.donorId}`} className="hide">
+              {this.renderDonorDetail(donor.donorId, index)}
+            </div>
+          </li>
         );
       });
-    else return <div/>;
+    else return <div />;
   };
 
   onClickCreateDonor = () => {
-    this.setState({createDonorClicked: true});
+    this.setState({ createDonorClicked: true });
   };
 
-  renderMainHeader = ({Heading}) => {
+  renderMainHeader = ({ Heading }) => {
     if (this.state.createDonorClicked === false || this.state.renderMe === true)
       return (
-          <Row>
-            <Col xs={4}>
-              <h1 className="float-left">{Heading}</h1>
-            </Col>
-            <Col xs={3} className="createDonorCol">
-              <Button className="button" onClick={this.onClickCreateDonor}>
-                <p className="buttonText">Create Donor</p>
-              </Button>
-            </Col>
-            <Col>
-              <Row className="createDonorTag ">
-                <Col className="rightR">
-                  <h4 className="red">
-                    <u>Add Donor List</u>
-                  </h4>
-                </Col>
-                <Col className="leftR">
-                  <input className="float-right" type="file" accept="text/csv"/>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
+        <Row>
+          <Col xs={4}>
+            <h1 className="float-left">{Heading}</h1>
+          </Col>
+          <Col xs={3} className="createDonorCol">
+            <Button className="button" onClick={this.onClickCreateDonor}>
+              <p className="buttonText">Create Donor</p>
+            </Button>
+          </Col>
+          <Col>
+            <Row className="createDonorTag ">
+              <Col className="rightR">
+                <h4 className="red">
+                  <u>Add Donor List</u>
+                </h4>
+              </Col>
+              <Col className="leftR">
+                <input className="float-right" type="file" accept="text/csv" />
+              </Col>
+            </Row>
+          </Col>
+        </Row>
       );
     else
       return (
-          <Row>
-            <Col>
-              <h1 className="center">{Heading}</h1>
-            </Col>
-          </Row>
+        <Row>
+          <Col>
+            <h1 className="center">{Heading}</h1>
+          </Col>
+        </Row>
       );
   };
 
   render() {
     if (this.state.createDonorClicked === false || this.state.renderMe === true)
       return (
-          <Container>
-            <this.renderMainHeader Heading="Donors List"/>
-            <Container className="scroll">
-              <ul className="list-group">
-                <this.renderDonors/>
-              </ul>
-            </Container>
+        <Container>
+          <this.renderMainHeader Heading="Donors List" />
+          <Container className="scroll">
+            <ul className="list-group">
+              <this.renderDonors />
+            </ul>
           </Container>
+        </Container>
       );
     else
       return (
-          <Container>
-            <this.renderMainHeader Heading="Create Donor"/>
-            <Container className="scroll">
-              <CreateDonor renderMe={true}/>
-            </Container>
+        <Container>
+          <this.renderMainHeader Heading="Create Donor" />
+          <Container className="scroll">
+            <CreateDonor renderMe={true} />
           </Container>
+        </Container>
       );
   }
 }
 
 function mapStateToProps(state) {
-  return {donorsList: state.donors.list, donor: state.donors.donor};
+  return { donorsList: state.donors.list, donor: state.donors.donor };
 }
 
-export default connect(mapStateToProps, {deleteDonor, getDonors, getDonor})(
-    ManageDonors
+export default connect(mapStateToProps, { deleteDonor, getDonors, getDonor })(
+  ManageDonors
 );

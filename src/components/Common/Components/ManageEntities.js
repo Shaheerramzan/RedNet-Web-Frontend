@@ -1,5 +1,5 @@
-import React, {Component} from "react";
-import {connect} from "react-redux";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import {
   deleteDonor,
   getDonor,
@@ -8,8 +8,8 @@ import {
   getSocietyAdmin,
   getSocietyAdmins,
 } from "../../../actions";
-import {Button, Col, Container, Form, Row} from "react-bootstrap";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./CSS/ManageEntity.css";
 import CreateEntity from "./CreateEntity";
@@ -28,7 +28,7 @@ class ManageEntities extends Component {
 
   componentDidMount() {
     if (this.state.userType === 1) {
-      this.setState({renderMe: this.props.renderMe, userName: "Donor"});
+      this.setState({ renderMe: this.props.renderMe, userName: "Donor" });
       this.props.getDonors();
     }
     if (this.state.userType === 2) {
@@ -46,7 +46,7 @@ class ManageEntities extends Component {
   };
 
   showEntity = (id) => {
-    this.setState({donorId: id});
+    this.setState({ donorId: id });
     let editText = document.getElementById(`entityShowDetailButton${id}`);
     let entityDetail = document.getElementById(`entityDetailDiv${id}`);
 
@@ -65,106 +65,106 @@ class ManageEntities extends Component {
   };
 
   fillDetailForm = ({
-                      id,
-                      name,
-                      username,
-                      email,
-                      phone,
-                      address: {street, city},
-                    }) => {
+    id,
+    name,
+    username,
+    email,
+    phone,
+    address: { street, city },
+  }) => {
     return (
-        <Container id={`entityDetail${id}`}>
-          <Form>
-            <Row>
-              <Col className="form-group">
-                <label htmlFor="First Name">First Name</label>
-                <input type="text" readOnly className="form-control" value={id}/>
-              </Col>
-              <Col className="form-group">
-                <label htmlFor="Last Name">Last Name</label>
-                <input
-                    type="text"
-                    readOnly
-                    className="form-control"
-                    value={name}
-                />
-              </Col>
-            </Row>
-            <Row>
-              <Col className="form-group">
-                <label htmlFor="Username">Username</label>
-                <input
-                    type="text"
-                    readOnly
-                    className="form-control"
-                    value={username}
-                />
-              </Col>
-            </Row>
-            <Row>
-              <Col className="form-group">
-                <label htmlFor="E-mail">E-mail</label>
-                <input
-                    type="email"
-                    readOnly
-                    className="form-control"
-                    value={email}
-                />
-              </Col>
-              <Col className="form-group">
-                <label htmlFor="Phone Number">Phone Number</label>
-                <input
-                    type="text"
-                    readOnly
-                    className="form-control"
-                    value={phone}
-                />
-              </Col>
-            </Row>
-            <Row>
-              <Col className="form-group">
-                <label htmlFor="City">City</label>
-                <input
-                    type="text"
-                    readOnly
-                    className="form-control"
-                    value={city}
-                />
-              </Col>
-              <Col className="form-group">
-                <label htmlFor="Area">Area</label>
-                <input
-                    type="text"
-                    readOnly
-                    className="form-control"
-                    value={street}
-                />
-              </Col>
-            </Row>
-            <Row>
-              <Col className="form-group">
-                <label htmlFor="Gender">Gender</label>
-                <select className="form-control" disabled={true} value="male">
-                  <option>female</option>
-                  <option>male</option>
-                </select>
-              </Col>
-              <Col className="form-group">
-                <label htmlFor="Blood Group">Blood Group</label>
-                <select className="form-control" disabled={true} value="B+">
-                  <option>O+</option>
-                  <option>O-</option>
-                  <option>A+</option>
-                  <option>A-</option>
-                  <option>B+</option>
-                  <option>B-</option>
-                  <option>AB+</option>
-                  <option>AB-</option>
-                </select>
-              </Col>
-            </Row>
-          </Form>
-        </Container>
+      <Container id={`entityDetail${id}`}>
+        <Form>
+          <Row>
+            <Col className="form-group">
+              <label htmlFor="First Name">First Name</label>
+              <input type="text" readOnly className="form-control" value={id} />
+            </Col>
+            <Col className="form-group">
+              <label htmlFor="Last Name">Last Name</label>
+              <input
+                type="text"
+                readOnly
+                className="form-control"
+                value={name}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col className="form-group">
+              <label htmlFor="Username">Username</label>
+              <input
+                type="text"
+                readOnly
+                className="form-control"
+                value={username}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col className="form-group">
+              <label htmlFor="E-mail">E-mail</label>
+              <input
+                type="email"
+                readOnly
+                className="form-control"
+                value={email}
+              />
+            </Col>
+            <Col className="form-group">
+              <label htmlFor="Phone Number">Phone Number</label>
+              <input
+                type="text"
+                readOnly
+                className="form-control"
+                value={phone}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col className="form-group">
+              <label htmlFor="City">City</label>
+              <input
+                type="text"
+                readOnly
+                className="form-control"
+                value={city}
+              />
+            </Col>
+            <Col className="form-group">
+              <label htmlFor="Area">Area</label>
+              <input
+                type="text"
+                readOnly
+                className="form-control"
+                value={street}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col className="form-group">
+              <label htmlFor="Gender">Gender</label>
+              <select className="form-control" disabled={true} value="male">
+                <option>female</option>
+                <option>male</option>
+              </select>
+            </Col>
+            <Col className="form-group">
+              <label htmlFor="Blood Group">Blood Group</label>
+              <select className="form-control" disabled={true} value="B+">
+                <option>O+</option>
+                <option>O-</option>
+                <option>A+</option>
+                <option>A-</option>
+                <option>B+</option>
+                <option>B-</option>
+                <option>AB+</option>
+                <option>AB-</option>
+              </select>
+            </Col>
+          </Row>
+        </Form>
+      </Container>
     );
   };
 
@@ -186,7 +186,7 @@ class ManageEntities extends Component {
         }
       }
     } else {
-      return <Container id={`entityDetail${id}`}/>;
+      return <Container id={`entityDetail${id}`} />;
     }
   };
 
@@ -194,98 +194,98 @@ class ManageEntities extends Component {
     if (this.props.donorsList)
       return this.props.donorsList.map((donor) => {
         return (
-            <li className="list-group-item" key={donor.id}>
-              {donor.name}
-              <div className="float-right red">
+          <li className="list-group-item" key={donor.id}>
+            {donor.name}
+            <div className="float-right red">
               <span
-                  className="showEntityDetailText"
-                  id={`entityShowDetailButton${donor.id}`}
-                  onClick={this.showEntity.bind(this, donor.id)}
+                className="showEntityDetailText"
+                id={`entityShowDetailButton${donor.id}`}
+                onClick={this.showEntity.bind(this, donor.id)}
               >
                 show detail
               </span>
-                <FontAwesomeIcon
-                    className="deleteIcon"
-                    icon="trash"
-                    size="lg"
-                    onClick={this.deleteEntity.bind(this, donor.id)}
-                />
-              </div>
-              <div id={`entityDetailDiv${donor.id}`} className="hide">
-                {this.renderentityDetail(donor.id)}
-              </div>
-            </li>
+              <FontAwesomeIcon
+                className="deleteIcon"
+                icon="trash"
+                size="lg"
+                onClick={this.deleteEntity.bind(this, donor.id)}
+              />
+            </div>
+            <div id={`entityDetailDiv${donor.id}`} className="hide">
+              {this.renderentityDetail(donor.id)}
+            </div>
+          </li>
         );
       });
-    else return <div/>;
+    else return <div />;
   };
 
   onClickCreateEntity = () => {
-    this.setState({CreateEntityClicked: true});
+    this.setState({ CreateEntityClicked: true });
   };
 
-  renderMainHeader = ({Heading}) => {
+  renderMainHeader = ({ Heading }) => {
     if (
-        this.state.createEntityClicked === false ||
-        this.state.renderMe === true
+      this.state.createEntityClicked === false ||
+      this.state.renderMe === true
     )
       return (
-          <Row>
-            <Col xs={4}>
-              <h1 className="float-left">{Heading}</h1>
-            </Col>
-            <Col xs={3} className="CreateEntityCol">
-              <Button className="button" onClick={this.onClickCreateEntity}>
-                <p className="buttonText">Create Donor</p>
-              </Button>
-            </Col>
-            <Col>
-              <Row className="CreateEntityTag ">
-                <Col className="rightR">
-                  <h4 className="red">
-                    <u>Add Donor List</u>
-                  </h4>
-                </Col>
-                <Col className="leftR">
-                  <input className="float-right" type="file" accept="text/csv"/>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
+        <Row>
+          <Col xs={4}>
+            <h1 className="float-left">{Heading}</h1>
+          </Col>
+          <Col xs={3} className="CreateEntityCol">
+            <Button className="button" onClick={this.onClickCreateEntity}>
+              <p className="buttonText">Create Donor</p>
+            </Button>
+          </Col>
+          <Col>
+            <Row className="CreateEntityTag ">
+              <Col className="rightR">
+                <h4 className="red">
+                  <u>Add Donor List</u>
+                </h4>
+              </Col>
+              <Col className="leftR">
+                <input className="float-right" type="file" accept="text/csv" />
+              </Col>
+            </Row>
+          </Col>
+        </Row>
       );
     else
       return (
-          <Row>
-            <Col>
-              <h1 className="center">{Heading}</h1>
-            </Col>
-          </Row>
+        <Row>
+          <Col>
+            <h1 className="center">{Heading}</h1>
+          </Col>
+        </Row>
       );
   };
 
   render() {
     if (
-        this.state.createEntityClicked === false ||
-        this.state.renderMe === true
+      this.state.createEntityClicked === false ||
+      this.state.renderMe === true
     )
       return (
-          <Container>
-            <this.renderMainHeader Heading="Donors List"/>
-            <Container className="scroll">
-              <ul className="list-group">
-                <this.renderDonors/>
-              </ul>
-            </Container>
+        <Container>
+          <this.renderMainHeader Heading="Donors List" />
+          <Container className="scroll">
+            <ul className="list-group">
+              <this.renderDonors />
+            </ul>
           </Container>
+        </Container>
       );
     else
       return (
-          <Container>
-            <this.renderMainHeader Heading="Create Donor"/>
-            <Container className="scroll">
-              <CreateEntity renderMe={true}/>
-            </Container>
+        <Container>
+          <this.renderMainHeader Heading="Create Donor" />
+          <Container className="scroll">
+            <CreateEntity renderMe={true} />
           </Container>
+        </Container>
       );
   }
 }

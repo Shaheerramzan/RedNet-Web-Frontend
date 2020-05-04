@@ -16,8 +16,8 @@ class SocietyAdminHomepage extends React.Component {
       <Container fluid className="bg-img">
         <Header ForHomepage="3" Name="Society Admin" />
         <HomePage component="Society Admin">
-	        <ManageDonors userType={1}/>
-	        <Complains/>
+          <ManageDonors userType={1} />
+          <Complains />
         </HomePage>
       </Container>
     );

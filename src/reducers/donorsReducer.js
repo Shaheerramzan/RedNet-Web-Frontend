@@ -6,9 +6,9 @@ export default (state = {}, action) => {
         list: action.payload,
       };
     case "ADD_DONOR":
-      return {...state, list: state.list.push(action.payload)};
+      return { ...state, list: state.list.push(action.payload) };
     case "GET_DONOR":
-	    return {...state, donor: action.payload};
+      return { ...state, donor: action.payload };
     case "DELETE_DONOR":
       return {
         ...state,

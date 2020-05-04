@@ -67,26 +67,26 @@ class HomePage extends React.Component {
 
   renderChildren = () => {
     if (this.props.children)
-	    return this.props.children.map((child, index) => {
-		    return (
-				    <div key={index} id={"div" + index} className="right-panel-div">
-					    {child}
-				    </div>
-		    );
-	    });
+      return this.props.children.map((child, index) => {
+        return (
+          <div key={index} id={"div" + index} className="right-panel-div">
+            {child}
+          </div>
+        );
+      });
     else
-	    return (
-			    <div className="d-flex align-items-center white">
-				    <h1>
-					    <strong>Select option to view tab</strong>
-				    </h1>
-				    <div
-						    className="spinner-border ml-auto"
-						    role="status"
-						    aria-hidden="true"
-				    />
-			    </div>
-	    );
+      return (
+        <div className="d-flex align-items-center white">
+          <h1>
+            <strong>Select option to view tab</strong>
+          </h1>
+          <div
+            className="spinner-border ml-auto"
+            role="status"
+            aria-hidden="true"
+          />
+        </div>
+      );
   };
 
   render() {

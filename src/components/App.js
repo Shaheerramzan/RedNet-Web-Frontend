@@ -26,8 +26,8 @@ function App() {
       <Route exact path={"/:name/Login"} component={LoginMainPage} />
       <Route exact path={"/society-admin/"} component={SocietyAdminHomepage} />
       <Route exact path={"/society-head/"} component={SocietyHeadHomepage} />
-	    <Route exact path={"/super-admin/"} component={SuperAdminHomepage}/>
-	    <Route exact path={"/test/"} component={Complains}/>
+      <Route exact path={"/super-admin/"} component={SuperAdminHomepage} />
+      <Route exact path={"/test/"} component={Complains} />
     </BrowserRouter>
   );
 }
