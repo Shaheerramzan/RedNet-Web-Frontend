@@ -46,6 +46,12 @@ export const getSocietyAdmins = () => async (dispatch) => {
   dispatch({ type: "GET_SOCIETY_ADMIN", payload: response.data });
 };
 
+export const createSocietyAdmin = (data) => async (dispatch) => {
+  const response = await BackendLink.post("/create.action", data);
+  if (response.status === 200)
+    dispatch({ type: "ADD_SOCIETY_ADMIN", payload: response.data });
+};
+
 export const deleteSocietyAdmin = (id) => async (dispatch) => {
   const response = await TemplateLink.delete(`/posts/${id}`);
   if (response.status === 200)

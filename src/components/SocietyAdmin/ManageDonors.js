@@ -190,28 +190,40 @@ class ManageDonors extends Component {
 
   renderDonors = () => {
     if (this.props.donorsList)
-      return this.props.donorsList.map((donor, index) => {
+      return this.props.donorsList.map((donor) => {
         return (
           <li className="list-group-item" key={donor.donorId}>
-            {`${donor.personId.firstName} ${donor.personId.lastName}`}
-            <div className="float-right red">
-              <span
-                className="showDonorDetailText"
-                id={`donorShowDetailButton${donor.donorId}`}
-                onClick={this.showDonor.bind(this, donor.donorId)}
-              >
-                show detail
-              </span>
-              <FontAwesomeIcon
-                className="deleteIcon"
-                icon="trash"
-                size="lg"
-                onClick={this.deleteDonor.bind(this, donor.donorId)}
-              />
-            </div>
+            <Row>
+              <Col xs={2}>
+                <div className="float-left">
+                  <span>{`${donor.personId.firstName} ${donor.personId.lastName}`}</span>
+                </div>
+              </Col>
+              <Col xs={1}>
+                <span> {donor.personId.bloodGroup}</span>
+              </Col>
+              <Col xs={7} />
+              <Col xs={2}>
+                <div className="float-right red">
+                  <span
+                    className="showDonorDetailText"
+                    id={`donorShowDetailButton${donor.donorId}`}
+                    onClick={this.showDonor.bind(this, donor.donorId)}
+                  >
+                    show detail
+                  </span>
+                  <FontAwesomeIcon
+                    className="deleteIcon"
+                    icon="trash"
+                    size="lg"
+                    onClick={this.deleteDonor.bind(this, donor.donorId)}
+                  />
+                </div>
+              </Col>
+            </Row>
             <div id={`donorDetailDiv${donor.donorId}`} className="hide">
               {this.state.donors[`donor${donor.donorId}`] !== undefined &&
-                this.renderDonorDetail(donor.donorId, index)}
+                this.renderDonorDetail(donor.donorId)}
             </div>
           </li>
         );

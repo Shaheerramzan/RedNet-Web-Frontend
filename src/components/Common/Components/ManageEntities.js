@@ -11,7 +11,7 @@ import {
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import "./CSS/ManageEntity.css";
+import "../CSS/ManageEntity.css";
 import CreateEntity from "./CreateEntity";
 
 class ManageEntities extends Component {
@@ -40,13 +40,56 @@ class ManageEntities extends Component {
     }
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (
+      this.props.donor &&
+      this.state.donors[`donor${this.props.donor.donorId}`] === undefined
+    ) {
+      let v = this.state.donors;
+      v[`donor${this.props.donor.donorId}`] = this.props.donor;
+      this.setState({
+        donors: v,
+      });
+    }
+    if (
+      this.props.societyAdmin &&
+      this.state.donors[
+        `societyAdmin${this.props.societyAdmin.societyAdminId}`
+      ] === undefined
+    ) {
+      let v = this.state.societyAdmin;
+      v[
+        `societyAdmin${this.props.societyAdmin.societyAdminId}`
+      ] = this.props.societyAdmin;
+      this.setState({
+        societyAdmins: v,
+      });
+    }
+  }
+
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    return !(
+      (this.props.donor &&
+        this.state.donors[`donor${this.props.donor.donorId}`] === undefined) ||
+      (this.props.societyAdmin &&
+        this.state.donors[
+          `societyAdmin${this.props.societyAdmin.societyAdminId}`
+        ] === undefined)
+    );
+  }
+
   deleteEntity = (id) => {
     if (this.props.userType === 1) this.props.deleteDonor(id);
     if (this.props.userType === 2) this.props.deleteSocietyAdmin(id);
   };
 
   showEntity = (id) => {
-    this.setState({ donorId: id });
+    if (this.props.userType === 1) {
+      this.setState({ donorId: id });
+    }
+    if (this.props.userType === 2) {
+      this.setState({ societyAdminId: id });
+    }
     let editText = document.getElementById(`entityShowDetailButton${id}`);
     let entityDetail = document.getElementById(`entityDetailDiv${id}`);
 
@@ -59,26 +102,51 @@ class ManageEntities extends Component {
       entityDetail.classList.add("hide");
       entityDetail.classList.remove("show");
     }
-    if (!this.state.donors[`donor${id}`]) {
-      this.props.getDonor(id);
+    if (this.props.userType === 1) {
+      if (!this.state.donors[`donor${id}`]) {
+        this.props.getDonor(id);
+      }
+    }
+    if (this.props.userType === 2) {
+      if (!this.state.societyAdmins[`societyAdmin${id}`]) {
+        this.props.getSocietyAdmin(id);
+      }
     }
   };
 
   fillDetailForm = ({
-    id,
-    name,
-    username,
-    email,
-    phone,
-    address: { street, city },
+    societyAdminId,
+    donorId,
+    personId: {
+      area,
+      bloodGroup,
+      city,
+      email,
+      firstName,
+      lastName,
+      gender,
+      phone1,
+      username,
+    },
   }) => {
+    const entityId =
+      this.props.userType === 1
+        ? donorId
+        : this.props.userType === 2
+        ? societyAdminId
+        : 0;
     return (
-      <Container id={`entityDetail${id}`}>
+      <Container id={`entityDetail${entityId}`}>
         <Form>
           <Row>
             <Col className="form-group">
               <label htmlFor="First Name">First Name</label>
-              <input type="text" readOnly className="form-control" value={id} />
+              <input
+                type="text"
+                readOnly
+                className="form-control"
+                value={firstName}
+              />
             </Col>
             <Col className="form-group">
               <label htmlFor="Last Name">Last Name</label>
@@ -86,7 +154,7 @@ class ManageEntities extends Component {
                 type="text"
                 readOnly
                 className="form-control"
-                value={name}
+                value={lastName}
               />
             </Col>
           </Row>
@@ -105,7 +173,7 @@ class ManageEntities extends Component {
             <Col className="form-group">
               <label htmlFor="E-mail">E-mail</label>
               <input
-                type="email"
+                type="text"
                 readOnly
                 className="form-control"
                 value={email}
@@ -117,7 +185,7 @@ class ManageEntities extends Component {
                 type="text"
                 readOnly
                 className="form-control"
-                value={phone}
+                value={phone1}
               />
             </Col>
           </Row>
@@ -137,21 +205,25 @@ class ManageEntities extends Component {
                 type="text"
                 readOnly
                 className="form-control"
-                value={street}
+                value={area}
               />
             </Col>
           </Row>
           <Row>
             <Col className="form-group">
               <label htmlFor="Gender">Gender</label>
-              <select className="form-control" disabled={true} value="male">
+              <select className="form-control" disabled={true} value={gender}>
                 <option>female</option>
                 <option>male</option>
               </select>
             </Col>
             <Col className="form-group">
               <label htmlFor="Blood Group">Blood Group</label>
-              <select className="form-control" disabled={true} value="B+">
+              <select
+                className="form-control"
+                disabled={true}
+                value={bloodGroup}
+              >
                 <option>O+</option>
                 <option>O-</option>
                 <option>A+</option>
@@ -168,92 +240,146 @@ class ManageEntities extends Component {
     );
   };
 
-  renderentityDetail = (id) => {
-    if (this.props.donor) {
-      if (this.props.donor.id === id) {
-        if (!this.state.donors[`donor${id}`]) {
-          let v = this.state.donors;
-          v[`donor${id}`] = this.props.donor;
-          console.log(v);
-          this.setState({
-            donors: v,
-          });
-        }
-        return this.fillDetailForm(this.props.donor);
-      } else {
-        if (this.state.donors[`donor${id}`]) {
-          return this.fillDetailForm(this.state.donors[`donor${id}`]);
-        }
-      }
-    } else {
-      return <Container id={`entityDetail${id}`} />;
-    }
+  renderEntityDetail = (id) => {
+    if (this.props.userType === 1 && this.state.donors[`donor${id}`]) {
+      return this.fillDetailForm(this.state.donors[`donor${id}`]);
+    } else if (
+      this.props.userType === 2 &&
+      this.state.societyAdmins[`societyAdmin${id}`]
+    )
+      return this.fillDetailForm(this.state.societyAdmins[`societyAdmin${id}`]);
+    else return <Container id={`entityDetail${id}`} />;
   };
 
-  renderDonors = () => {
-    if (this.props.donorsList)
-      return this.props.donorsList.map((donor) => {
+  renderEntities = () => {
+    const EntityList =
+      this.props.userType === 1
+        ? this.props.donorsList
+        : this.props.userType === 2
+        ? this.props.societyAdminsList
+        : {};
+    if (
+      this.props.userType === 1
+        ? this.props.donorsList
+        : this.props.userType === 2
+        ? this.props.societyAdminsList
+        : false
+    )
+      return EntityList.map((entity) => {
+        const entityId =
+          this.props.userType === 1
+            ? entity.donorId
+            : this.props.userType === 2
+            ? entity.societyAdminId
+            : 0;
         return (
-          <li className="list-group-item" key={donor.id}>
-            {donor.name}
-            <div className="float-right red">
-              <span
-                className="showEntityDetailText"
-                id={`entityShowDetailButton${donor.id}`}
-                onClick={this.showEntity.bind(this, donor.id)}
-              >
-                show detail
-              </span>
-              <FontAwesomeIcon
-                className="deleteIcon"
-                icon="trash"
-                size="lg"
-                onClick={this.deleteEntity.bind(this, donor.id)}
-              />
-            </div>
-            <div id={`entityDetailDiv${donor.id}`} className="hide">
-              {this.renderentityDetail(donor.id)}
+          <li className="list-group-item" key={entityId}>
+            <Row>
+              <Col xs={2}>
+                <div className="float-left">
+                  <span>{`${entity.personId.firstName} ${entity.personId.lastName}`}</span>
+                </div>
+              </Col>
+              {this.props.userType === 1 && (
+                <Col xs={1}>
+                  <span> {entity.personId.bloodGroup}</span>
+                </Col>
+              )}
+              <Col xs={7} />
+              <Col>
+                <div className="float-right red">
+                  <span
+                    className="showEntityDetailText"
+                    id={`entityShowDetailButton${entityId}`}
+                    onClick={this.showEntity.bind(this, entityId)}
+                  >
+                    show detail
+                  </span>
+                  <FontAwesomeIcon
+                    className="deleteIcon"
+                    icon="trash"
+                    size="lg"
+                    onClick={this.deleteEntity.bind(this, entityId)}
+                  />
+                </div>
+              </Col>
+            </Row>
+            <div id={`entityDetailDiv${entityId}`} className="hide">
+              {(this.state.donors[`donor${entityId}`] !== undefined ||
+                this.state.societyAdmins[`societyAdmin${entityId}`] !==
+                  undefined) &&
+                this.renderEntityDetail(entityId)}
             </div>
           </li>
         );
       });
-    else return <div />;
+    else
+      return (
+        <div className="d-flex align-items-center">
+          <strong>Loading...</strong>
+          <div
+            className="spinner-border ml-auto"
+            role="status"
+            aria-hidden="true"
+          />
+        </div>
+      );
   };
 
   onClickCreateEntity = () => {
-    this.setState({ CreateEntityClicked: true });
+    this.setState({ createEntityClicked: true });
   };
 
   renderMainHeader = ({ Heading }) => {
     if (
       this.state.createEntityClicked === false ||
       this.state.renderMe === true
-    )
+    ) {
+      Heading =
+        this.props.userType === 1
+          ? "Donor List"
+          : this.props.userType === 2
+          ? "Society Admin List"
+          : "";
       return (
         <Row>
           <Col xs={4}>
             <h1 className="float-left">{Heading}</h1>
           </Col>
           <Col xs={3} className="CreateEntityCol">
-            <Button className="button" onClick={this.onClickCreateEntity}>
-              <p className="buttonText">Create Donor</p>
+            <Button
+              type="button"
+              className="btn-block"
+              onClick={this.onClickCreateEntity}
+            >
+              {this.props.userType === 1
+                ? "Create Donor"
+                : this.props.userType === 2
+                ? "Create Society Admin"
+                : ""}
             </Button>
           </Col>
-          <Col>
-            <Row className="CreateEntityTag ">
-              <Col className="rightR">
-                <h4 className="red">
-                  <u>Add Donor List</u>
-                </h4>
-              </Col>
-              <Col className="leftR">
-                <input className="float-right" type="file" accept="text/csv" />
-              </Col>
-            </Row>
-          </Col>
+          {this.props.userType === 1 && (
+            <Col>
+              <Row className="CreateEntityTag ">
+                <Col className="rightR">
+                  <h4 className="red">
+                    <u>Add Donor List</u>
+                  </h4>
+                </Col>
+                <Col className="leftR">
+                  <input
+                    className="float-right"
+                    type="file"
+                    accept="text/csv"
+                  />
+                </Col>
+              </Row>
+            </Col>
+          )}
         </Row>
       );
-    else
+    } else
       return (
         <Row>
           <Col>
@@ -273,7 +399,7 @@ class ManageEntities extends Component {
           <this.renderMainHeader Heading="Donors List" />
           <Container className="scroll">
             <ul className="list-group">
-              <this.renderDonors />
+              <this.renderEntities />
             </ul>
           </Container>
         </Container>
@@ -283,7 +409,7 @@ class ManageEntities extends Component {
         <Container>
           <this.renderMainHeader Heading="Create Donor" />
           <Container className="scroll">
-            <CreateEntity renderMe={true} />
+            <CreateEntity renderMe={true} userType={this.props.userType} />
           </Container>
         </Container>
       );
@@ -294,7 +420,7 @@ function mapStateToProps(state) {
   return {
     donorsList: state.donors.list,
     donor: state.donors.donor,
-    societyAdminList: state.societyAdmin.list,
+    societyAdminsList: state.societyAdmin.list,
     societyAdmin: state.societyAdmin.societyAdmin,
   };
 }

@@ -3,8 +3,8 @@ import { Col, Container, Form, Row } from "react-bootstrap";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 
-import { createDonor } from "../../../actions";
-import ManageDonors from "./ManageEntities";
+import { createDonor, createSocietyAdmin } from "../../../actions";
+import ManageEntities from "./ManageEntities";
 
 const validate = (values) => {
   const errors = {};
@@ -48,7 +48,6 @@ class CreateEntity extends React.Component {
   }
 
   setCancel = () => {
-    console.log("Cancel");
     this.setState({ isCancelClicked: true });
   };
 
@@ -100,12 +99,17 @@ class CreateEntity extends React.Component {
     for (const [key, value] of Object.entries(values)) {
       formData.append(key, value);
     }
-    this.props.createDonor(formData);
+    if (this.props.userType === 1) {
+      this.props.createDonor(formData);
+    }
+    if (this.props.userType === 2) {
+      this.props.createSocietyAdmin(formData);
+    }
   };
 
   render() {
     if (this.state.isCancelClicked === true) {
-      return <ManageDonors renderMe={true} />;
+      return <ManageEntities renderMe={true} userType={this.props.userType} />;
     } else
       return (
         <div>
@@ -212,6 +216,6 @@ class CreateEntity extends React.Component {
   }
 }
 
-CreateEntity = connect(null, { createDonor })(CreateEntity);
+CreateEntity = connect(null, { createDonor, createSocietyAdmin })(CreateEntity);
 
-export default reduxForm({ form: "CreateDonor", validate })(CreateEntity);
+export default reduxForm({ form: "CreateEntity", validate })(CreateEntity);
