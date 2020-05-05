@@ -53,11 +53,11 @@ class ManageEntities extends Component {
     }
     if (
       this.props.societyAdmin &&
-      this.state.donors[
+      this.state.societyAdmins[
         `societyAdmin${this.props.societyAdmin.societyAdminId}`
       ] === undefined
     ) {
-      let v = this.state.societyAdmin;
+      let v = this.state.societyAdmins;
       v[
         `societyAdmin${this.props.societyAdmin.societyAdminId}`
       ] = this.props.societyAdmin;
@@ -72,7 +72,7 @@ class ManageEntities extends Component {
       (this.props.donor &&
         this.state.donors[`donor${this.props.donor.donorId}`] === undefined) ||
       (this.props.societyAdmin &&
-        this.state.donors[
+        this.state.societyAdmins[
           `societyAdmin${this.props.societyAdmin.societyAdminId}`
         ] === undefined)
     );

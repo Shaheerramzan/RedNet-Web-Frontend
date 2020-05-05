@@ -37,13 +37,17 @@ export const deleteDonor = (id) => async (dispatch) => {
 };
 
 export const getSocietyAdmin = (id) => async (dispatch) => {
-  const response = await TemplateLink.get(`/users/${id}`);
-  dispatch({ type: "GET_SOCIETY_ADMIN", payload: response.data });
+  const response = await BackendLink.get(`/societyAdmin?Id=${id}`);
+  console.log(id);
+  dispatch({ type: "GET_SOCIETY_ADMIN", payload: response.data.societyAdmin });
 };
 
 export const getSocietyAdmins = () => async (dispatch) => {
-  const response = await TemplateLink.get("/users");
-  dispatch({ type: "GET_SOCIETY_ADMIN", payload: response.data });
+  const response = await BackendLink.get("/societyAdmins?Id=1");
+  dispatch({
+    type: "GET_SOCIETY_ADMINS",
+    payload: response.data.societyAdmins,
+  });
 };
 
 export const createSocietyAdmin = (data) => async (dispatch) => {

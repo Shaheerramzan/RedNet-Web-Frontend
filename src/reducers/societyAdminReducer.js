@@ -1,6 +1,7 @@
 export default (state = {}, action) => {
   switch (action.type) {
     case "GET_SOCIETY_ADMINS":
+      console.log(action);
       return {
         ...state,
         list: action.payload,
