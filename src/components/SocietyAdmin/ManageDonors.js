@@ -18,6 +18,26 @@ class ManageDonors extends Component {
     this.setState({ renderMe: this.props.renderMe });
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (
+      this.props.donor &&
+      this.state.donors[`donor${this.props.donor.donorId}`] === undefined
+    ) {
+      let v = this.state.donors;
+      v[`donor${this.props.donor.donorId}`] = this.props.donor;
+      this.setState({
+        donors: v,
+      });
+    }
+  }
+
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    return !(
+      this.props.donor &&
+      this.state.donors[`donor${this.props.donor.donorId}`] === undefined
+    );
+  }
+
   deleteDonor = (id) => {
     this.props.deleteDonor(id);
   };
@@ -38,11 +58,6 @@ class ManageDonors extends Component {
     }
     if (!this.state.donors[`donor${id}`]) {
       this.props.getDonor(id);
-      let v = this.state.donors;
-      v[`donor${id}`] = this.props.donor;
-      this.setState({
-        donors: v,
-      });
     }
   };
 
@@ -98,7 +113,7 @@ class ManageDonors extends Component {
             <Col className="form-group">
               <label htmlFor="E-mail">E-mail</label>
               <input
-                type="email"
+                type="text"
                 readOnly
                 className="form-control"
                 value={email}
@@ -165,17 +180,9 @@ class ManageDonors extends Component {
     );
   };
 
-  setTheState = (id) => {};
-
   renderDonorDetail = (id) => {
-    if (this.props.donor) {
-      if (this.props.donor.donorId === id) {
-        return this.fillDetailForm(this.props.donor);
-      } else {
-        if (this.state.donors[`donor${id}`]) {
-          return this.fillDetailForm(this.state.donors[`donor${id}`]);
-        }
-      }
+    if (this.state.donors[`donor${id}`]) {
+      return this.fillDetailForm(this.state.donors[`donor${id}`]);
     } else {
       return <Container id={`donorDetail${id}`} />;
     }
@@ -203,12 +210,23 @@ class ManageDonors extends Component {
               />
             </div>
             <div id={`donorDetailDiv${donor.donorId}`} className="hide">
-              {this.renderDonorDetail(donor.donorId, index)}
+              {this.state.donors[`donor${donor.donorId}`] !== undefined &&
+                this.renderDonorDetail(donor.donorId, index)}
             </div>
           </li>
         );
       });
-    else return <div />;
+    else
+      return (
+        <div className="d-flex align-items-center">
+          <strong>Loading...</strong>
+          <div
+            className="spinner-border ml-auto"
+            role="status"
+            aria-hidden="true"
+          />
+        </div>
+      );
   };
 
   onClickCreateDonor = () => {
