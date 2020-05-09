@@ -5,6 +5,7 @@ export default (state = {}, action) => {
         return {
           ...state,
           isLogin: action.payload.type,
+          JSessionID: action.payload.JSessionID,
           data: action.payload.data,
         };
       else
@@ -12,14 +13,14 @@ export default (state = {}, action) => {
           ...state,
           isLogin: action.payload.type,
           data: action.payload.data,
-          error: true,
+          error: state.error === undefined ? 0 : state.error + 1,
         };
-    //_.set(state, ['donor'], action.payload);
     case "LOGOUT":
       return {
         ...state,
         isLogin: action.payload,
         data: null,
+        JSessionID: null,
         error: undefined,
       };
     case "GET_DATA":

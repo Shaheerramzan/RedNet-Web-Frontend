@@ -8,21 +8,49 @@ import { getData } from "../../actions";
 import "../Common/CSS/CommonClasses.css";
 import "./CSS/LoginMainpage.css";
 
+let close = true;
+
 class LoginMainPage extends React.Component {
   componentDidMount() {
     this.props.getData();
+    close = true;
   }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.login.error < this.props.login.error) {
+      close = true;
+      this.forceUpdate();
+    }
+  }
+  CloseAlert = () => {
+    close = false;
+    this.forceUpdate();
+  };
 
   render() {
     const Name = this.props.location.state.text;
     return (
       <Container fluid className="bg-img">
         <Header ForHomepage="2" />
-        {this.props.login.error !== undefined && (
+        {close && this.props.login.error !== undefined && (
           <Row className="justify-content-center">
             <Col xs={6}>
-              <div className="alert alert-danger" role="alert">
-                Enter correct Username or Password
+              <div
+                className="alert alert-danger alert-dismissible show fade"
+                role="alert"
+                id="alert-danger"
+              >
+                <strong>Try again</strong> Your entered Username or Password is
+                incorrect
+                <button
+                  type="button"
+                  className="close"
+                  data-dismiss="alert"
+                  aria-label="Close"
+                  onClick={this.CloseAlert.bind(this)}
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </div>
             </Col>
           </Row>
@@ -33,7 +61,10 @@ class LoginMainPage extends React.Component {
               <div className="login-text-div">
                 <span className="white">{Name}</span>
               </div>
-              <LoginForm Name={this.props.match.params.name} />
+              <LoginForm
+                Name={this.props.location.state.link}
+                Role={this.props.location.state.Role}
+              />
             </Container>
           </Col>
         </Row>

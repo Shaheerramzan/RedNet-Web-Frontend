@@ -11,11 +11,13 @@ class Options extends React.Component {
       if (i === index) {
         document.getElementById(i.toString()).className =
           "highlight option-box";
-        document.getElementById("div" + i.toString()).style = "display: block";
+        document.getElementById("div" + i.toString()).classList.remove("hide");
+        document.getElementById("div" + i.toString()).classList.add("show");
       } else {
         document.getElementById(i.toString()).className =
           "un-highlight option-box";
-        document.getElementById("div" + i.toString()).style = "display: none";
+        document.getElementById("div" + i.toString()).classList.remove("show");
+        document.getElementById("div" + i.toString()).classList.add("hide");
       }
     }
   };
@@ -45,6 +47,9 @@ class Options extends React.Component {
 }
 
 class HomePage extends React.Component {
+  person;
+  firstName;
+  lastName;
   constructor(props) {
     super(props);
     this.state = { options: [], Name: "" };
@@ -60,7 +65,7 @@ class HomePage extends React.Component {
     this.props.getData();
     if (this.props.data && this.state.Name === "") {
       this.setState({
-        Name: `${this.props.data.firstname} ${this.props.data.lastname}`,
+        Name: `${this.props.data.person.firstName} ${this.props.data.person.lastName}`,
       });
     }
   }
@@ -69,7 +74,7 @@ class HomePage extends React.Component {
     if (this.props.children)
       return this.props.children.map((child, index) => {
         return (
-          <div key={index} id={"div" + index} className="right-panel-div">
+          <div key={index} id={"div" + index} className="right-panel-div hide">
             {child}
           </div>
         );

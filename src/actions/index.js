@@ -62,12 +62,13 @@ export const deleteSocietyAdmin = (id) => async (dispatch) => {
     dispatch({ type: "DELETE_SOCIETY_ADMIN", payload: id });
 };
 
-export const doLogin = ({ Username, Password }) => async (dispatch) => {
+export const doLogin = ({ Username, Password, Role }) => async (dispatch) => {
   const response = await BackendLink.post(
     "/login.action",
-    `Username=${Username}&Password=${Password}`
+    `Username=${Username}&Password=${Password}&Role=${Role}`
   );
-  if (response.data.firstname) {
+  console.log(response);
+  if (response.data.JSessionId !== null) {
     dispatch({ type: "LOGIN", payload: { type: true, data: response.data } });
   } else {
     dispatch({ type: "LOGIN", payload: { type: false, data: null } });
@@ -75,7 +76,10 @@ export const doLogin = ({ Username, Password }) => async (dispatch) => {
 };
 
 export const doLogout = () => async (dispatch) => {
-  dispatch({ type: "LOGOUT", payload: null });
+  const response = await BackendLink.post(`/logout.action`);
+  if (response.data.JSessionId === null) {
+    dispatch({ type: "LOGOUT", payload: null });
+  }
 };
 
 export const getData = () => (dispatch) => {

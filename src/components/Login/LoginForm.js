@@ -21,11 +21,17 @@ const validate = (values) => {
   return errors;
 };
 
+let Role = 0;
+
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
     this.state = { HomepageLink: `/${this.props.Name}`, Name: null };
+  }
+  componentDidMount() {
+    Role = this.props.Role;
+    console.log(Role);
   }
   renderField = ({
     type,
@@ -51,7 +57,6 @@ class LoginForm extends React.Component {
   };
 
   onSubmit = ({ Username, Password }) => {
-    let Role = 1;
     this.props.doLogin({ Username, Password, Role });
   };
 
@@ -79,11 +84,9 @@ class LoginForm extends React.Component {
           type="password"
         />
         <div className="button-div">
-          {/*<Link to={this.state.HomepageLink}>*/}
           <button type="submit" className="btn btn-danger">
             Login
           </button>
-          {/*</Link>*/}
         </div>
       </Form>
     );
