@@ -3,12 +3,36 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
+    "@fortawesome/fontawesome-svg-core": "^1.2.28",
+    "@fortawesome/free-solid-svg-icons": "^5.13.0",
+    "@fortawesome/react-fontawesome": "^0.1.9",
+    "@popperjs/core": "2.3.3",
+    "@testing-library/jest-dom": "5.5.0",
+    "@testing-library/react": "10.0.3",
     "@testing-library/user-event": "^7.1.2",
+    "@typescript-eslint/eslint-plugin": "^2.29.0",
+    "@typescript-eslint/parser": "^2.29.0",
+    "axios": "^0.19.2",
+    "core-js": "3.6.5",
+    "eslint": "^6.8.0",
+    "immutable": "^3.8.2",
+    "js": "^0.1.0",
+    "lodash": "^4.17.15",
+    "minimist": "^1.2.5",
+    "node": "14.0.0",
+    "npm": "^6.13.7",
+    "prettier": "^2.0.5",
+    "prettier-eslint": "^9.0.1",
     "react": "^16.13.1",
+    "react-bootstrap": "^1.0.0",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.1",
+    "redux": "^4.0.5",
+    "redux-form": "8.3.5",
+    "redux-thunk": "^2.3.0",
+    "typescript": "^3.8.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -30,5 +54,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@fortawesome/free-brands-svg-icons": "^5.13.0"
   }
 }

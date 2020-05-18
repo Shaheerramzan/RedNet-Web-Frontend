@@ -1,0 +1,60 @@
+.red {
+    color: red;
+}
+
+.createDonorTag {
+    padding-top: 25px;
+    text-align: right;
+}
+
+.deleteIcon {
+    cursor: pointer;
+}
+
+.scroll {
+    max-height: 78vh;
+    height: auto;
+    overflow: hidden scroll;
+}
+
+.rightR {
+    padding-right: 0;
+}
+
+.leftR {
+    padding-left: 5px;
+}
+
+.createDonorCol {
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+.button {
+    text-align: center;
+    padding: 1px;
+    height: 1.4em;
+    width: 200px;
+}
+
+.buttonText {
+    position: center;
+    padding-bottom: 10px;
+}
+
+.center {
+    text-align: center;
+}
+
+.showDonorDetailText {
+    padding-right: 10px;
+    cursor: pointer;
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}

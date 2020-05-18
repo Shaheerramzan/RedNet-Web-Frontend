@@ -1,0 +1,10 @@
+.bg-img {
+  background-image: url("../../../images/LoginBackground.png");
+  height: 100vh;
+  background-position: center;
+  background-repeat: repeat-y, repeat-x;
+  background-size: cover;
+}
+.white {
+  color: white;
+}
