@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import Container from "react-bootstrap";
 
 import Header from "../Common/Components/Header";
 import HomePage from "../Common/Components/HomePage";

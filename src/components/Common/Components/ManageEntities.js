@@ -36,7 +36,7 @@ class ManageEntities extends Component {
         renderMe: this.props.renderMe,
         userName: "Society Admin",
       });
-      this.props.getSocietyAdmins();
+      this.props.getSocietyAdmins(this.props.personId);
     }
   }
 

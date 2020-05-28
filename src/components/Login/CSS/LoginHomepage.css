@@ -1,38 +1,33 @@
-.img-div {
-  width: auto;
-  height: auto;
+.divider-head {
 }
-.blood-img.container {
-  padding: 0;
+.img-row {
+  height: 80%;
 }
 .blood-img {
+  width: 70%;
+  height: 90%;
+  padding-left: 0;
+  padding-right: 0;
   background-image: url("../../../images/BloodDrop.png");
-  background-size: cover;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   transition: width 700ms, height 700ms, transform 1s;
 }
-.blood-img,
-.blood-text-div {
-  width: 270px;
-  height: 437px;
+.blood-img:hover {
+  width: 80%;
+  height:100%;
 }
-.blood-img:hover,
-.blood-text-div:hover {
-  height: 500px;
-  width: 310px;
-}
-.blood-text-div {
-  text-align: center;
-  padding-top: 280px;
+.blood-text {
+  position: absolute;
+  padding-left: 20%;
+  padding-top: 75%;
+  height: inherit;
   font-size: 30px;
-  transition: width 700ms, height 700ms, padding-top 700ms, font-size 700ms,
-    text-decoration 700ms;
+  transition: padding-left 700ms, padding-top 700ms, font-size 700ms;
 }
-.blood-text-div:hover {
-  padding-top: 343px;
-  font-size: 35px;
-  text-decoration: underline;
-}
-.blood-text-span {
-  text-decoration: inherit;
-  font-size: inherit;
+.blood-text:hover {
+  padding-left: 20%;
+  padding-top: 80%;
+  font-size: 40px;
+  color: white;
 }

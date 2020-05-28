@@ -42,8 +42,8 @@ export const getSocietyAdmin = (id) => async (dispatch) => {
   dispatch({ type: "GET_SOCIETY_ADMIN", payload: response.data.societyAdmin });
 };
 
-export const getSocietyAdmins = () => async (dispatch) => {
-  const response = await BackendLink.get("/societyAdmins?Id=1");
+export const getSocietyAdmins = ({id}) => async (dispatch) => {
+  const response = await BackendLink.get(`/societyAdmins?Id=${id}`);
   dispatch({
     type: "GET_SOCIETY_ADMINS",
     payload: response.data.societyAdmins,
