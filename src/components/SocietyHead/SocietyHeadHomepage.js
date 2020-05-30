@@ -1,5 +1,5 @@
 import React from "react";
-import Container from "react-bootstrap";
+import Container from "react-bootstrap/Container";
 
 import Header from "../Common/Components/Header";
 import HomePage from "../Common/Components/HomePage";
@@ -20,7 +20,7 @@ class SocietyHeadHomepage extends React.Component {
       <Container fluid className="bg-img">
         <Header ForHomepage="3" Name="Society Head" />
         <HomePage component="Society Head">
-          <ManageEntities userType={2} personId={this.props.personId}/>
+          <ManageEntities userType={2} societyHeadId={this.props.personId}/>
           <Complains />
         </HomePage>
       </Container>

@@ -29,14 +29,14 @@ class ManageEntities extends Component {
   componentDidMount() {
     if (this.state.userType === 1) {
       this.setState({ renderMe: this.props.renderMe, userName: "Donor" });
-      this.props.getDonors();
+      this.props.getDonors(this.props.societyHeadId);
     }
     if (this.state.userType === 2) {
       this.setState({
         renderMe: this.props.renderMe,
         userName: "Society Admin",
       });
-      this.props.getSocietyAdmins(this.props.personId);
+      this.props.getSocietyAdmins(this.props.societyHeadId);
     }
   }
 

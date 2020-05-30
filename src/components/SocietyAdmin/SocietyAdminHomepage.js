@@ -1,5 +1,5 @@
 import React from "react";
-import Container from "react-bootstrap";
+import Container from "react-bootstrap/Container";
 
 import Header from "../Common/Components/Header";
 import HomePage from "../Common/Components/HomePage";
@@ -9,6 +9,8 @@ import "../Common/CSS/Homepage.css";
 
 import ManageEntities from "../Common/Components/ManageEntities";
 import Complains from "./Complaints";
+import {connect} from "react-redux";
+import {getData} from "../../actions";
 
 class SocietyAdminHomepage extends React.Component {
   render() {
@@ -24,4 +26,8 @@ class SocietyAdminHomepage extends React.Component {
   }
 }
 
-export default SocietyAdminHomepage;
+function mapStateToProps(state) {
+  return {SocietyId: state.login.person}
+}
+
+export default connect(mapStateToProps, {getData})(SocietyAdminHomepage);

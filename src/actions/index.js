@@ -6,8 +6,8 @@ export const getDonor = (id) => async (dispatch) => {
   dispatch({ type: "GET_DONOR", payload: response.data.donor });
 };
 
-export const getDonors = () => async (dispatch) => {
-  const response = await BackendLink.get("/societyDonors?Id=1");
+export const getDonors = (id) => async (dispatch) => {
+  const response = await BackendLink.get(`/societyDonors?Id=${id}`);
   dispatch({ type: "GET_DONORS", payload: response.data.donors });
 };
 
@@ -42,7 +42,7 @@ export const getSocietyAdmin = (id) => async (dispatch) => {
   dispatch({ type: "GET_SOCIETY_ADMIN", payload: response.data.societyAdmin });
 };
 
-export const getSocietyAdmins = ({id}) => async (dispatch) => {
+export const getSocietyAdmins = (id) => async (dispatch) => {
   const response = await BackendLink.get(`/societyAdmins?Id=${id}`);
   dispatch({
     type: "GET_SOCIETY_ADMINS",
