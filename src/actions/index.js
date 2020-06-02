@@ -38,7 +38,6 @@ export const deleteDonor = (id) => async (dispatch) => {
 
 export const getSocietyAdmin = (id) => async (dispatch) => {
   const response = await BackendLink.get(`/societyAdmin?Id=${id}`);
-  console.log(id);
   dispatch({ type: "GET_SOCIETY_ADMIN", payload: response.data.societyAdmin });
 };
 
@@ -67,7 +66,6 @@ export const doLogin = ({ Username, Password, Role }) => async (dispatch) => {
     "/login.action",
     `Username=${Username}&Password=${Password}&Role=${Role}`
   );
-  console.log(response);
   if (response.data.JSessionId !== null) {
     dispatch({ type: "LOGIN", payload: { type: true, data: response.data } });
   } else {

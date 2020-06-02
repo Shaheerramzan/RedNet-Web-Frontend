@@ -20,7 +20,7 @@ class SocietyHeadHomepage extends React.Component {
       <Container fluid className="bg-img">
         <Header ForHomepage="3" Name="Society Head" />
         <HomePage component="Society Head">
-          <ManageEntities userType={2} societyHeadId={this.props.personId}/>
+          {this.props.data && <ManageEntities userType={2} societyHeadId={this.props.data.person.personId}/>}
           <Complains />
         </HomePage>
       </Container>
@@ -28,7 +28,7 @@ class SocietyHeadHomepage extends React.Component {
   }
 }
 function mapStateToProps(state) {
-  return {personId: state.login.data.person.personId}
+  return {data: state.login.data}
 
 }
 

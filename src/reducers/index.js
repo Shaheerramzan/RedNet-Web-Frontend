@@ -5,10 +5,21 @@ import loginReducer from "./loginReducer";
 import complaintReducer from "./complaintReducer";
 import societyAdminReducer from "./societyAdminReducer";
 
-export default combineReducers({
+const appReducer = combineReducers({
   donors: donorsReducer,
   form: formReducer,
   login: loginReducer,
   complaints: complaintReducer,
   societyAdmin: societyAdminReducer,
 });
+
+const rootReducer = (state, action) => {
+   if(action.type === "LOGOUT")
+   {
+     state.societyAdmin = undefined;
+     state.donors = undefined;
+   }
+   return appReducer(state, action);
+};
+
+export default rootReducer;

@@ -13,12 +13,17 @@ import {connect} from "react-redux";
 import {getData} from "../../actions";
 
 class SocietyAdminHomepage extends React.Component {
+  SocietyId;
+  componentDidMount() {
+    this.props.getData();
+  }
+
   render() {
     return (
       <Container fluid className="bg-img">
         <Header ForHomepage="3" Name="Society Admin" />
         <HomePage component="Society Admin">
-          <ManageEntities userType={1} />
+          {this.props.data && <ManageEntities userType={1} societyId={this.props.data.SocietyId}/>}
           <Complains />
         </HomePage>
       </Container>
@@ -27,7 +32,7 @@ class SocietyAdminHomepage extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return {SocietyId: state.login.person}
+  return {data: state.login.data}
 }
 
 export default connect(mapStateToProps, {getData})(SocietyAdminHomepage);
