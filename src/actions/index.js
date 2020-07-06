@@ -36,9 +36,29 @@ export const deleteDonor = (id) => async (dispatch) => {
   if (response.status === 200) dispatch({ type: "DELETE_DONOR", payload: id });
 };
 
-export const getSocietyAdmin = (id) => async (dispatch) => {
-  const response = await BackendLink.get(`/societyAdmin?Id=${id}`);
-  dispatch({ type: "GET_SOCIETY_ADMIN", payload: response.data.societyAdmin });
+export const getSocieties = () => async (dispatch) => {
+  const response = await BackendLink.get("/societies");
+  dispatch({
+    type: "GET_SOCIETIES",
+    payload: response.data.societies,
+  });
+};
+
+export const createSociety = (data) => async (dispatch) => {
+  const response = await BackendLink.post("/create.action", data);
+  if (response.status === 200)
+    dispatch({ type: "ADD_SOCIETY", payload: response.data });
+};
+
+export const deleteSociety = (id) => async (dispatch) => {
+  const response = await TemplateLink.delete(`/posts/${id}`);
+  if (response.status === 200)
+    dispatch({ type: "DELETE_SOCIETY", payload: id });
+};
+
+export const getSociety = (id) => async (dispatch) => {
+  const response = await BackendLink.get(`/society?Id=${id}`);
+  dispatch({ type: "GET_SOCIETY", payload: response.data.society });
 };
 
 export const getSocietyAdmins = (id) => async (dispatch) => {
@@ -47,6 +67,11 @@ export const getSocietyAdmins = (id) => async (dispatch) => {
     type: "GET_SOCIETY_ADMINS",
     payload: response.data.societyAdmins,
   });
+};
+
+export const getSocietyAdmin = (id) => async (dispatch) => {
+  const response = await BackendLink.get(`/societyAdmin?Id=${id}`);
+  dispatch({ type: "GET_SOCIETY_ADMIN", payload: response.data.societyAdmin });
 };
 
 export const createSocietyAdmin = (data) => async (dispatch) => {
@@ -82,4 +107,8 @@ export const doLogout = () => async (dispatch) => {
 
 export const getData = () => (dispatch) => {
   dispatch({ type: "GET_DATA", payload: null });
+};
+
+export const setCancelState = (value) => (dispatch) => {
+  dispatch({ type: "SET_CANCEL", payload: value });
 };

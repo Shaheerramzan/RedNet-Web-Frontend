@@ -58,7 +58,7 @@ class HomePage extends React.Component {
     else if (props.component === "Society Head")
       this.state.option = ["Manage Admins", "Add Feature"];
     else if (props.component === "Super Admin")
-      this.state.option = ["Society Requests", "Feedback"];
+      this.state.option = ["Manage Society", "Society Requests", "Feedback"];
   }
 
   componentDidMount() {

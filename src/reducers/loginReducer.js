@@ -7,6 +7,7 @@ export default (state = {}, action) => {
           isLogin: action.payload.type,
           JSessionID: action.payload.JSessionID,
           data: action.payload.data,
+          isCancelClicked: true,
         };
       else
         return {
@@ -22,9 +23,12 @@ export default (state = {}, action) => {
         data: null,
         JSessionID: null,
         error: undefined,
+        isCancelClicked: true,
       };
     case "GET_DATA":
       return state;
+    case "SET_CANCEL":
+      return { ...state, isCancelClicked: action.payload };
     default:
       return state;
   }

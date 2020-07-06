@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import Header from "../Common/Components/Header";
 import HomePage from "../Common/Components/HomePage";
 import ManageEntities from "../Common/Components/ManageEntities";
-import Complains from "../SocietyAdmin/Complaints";
+import Complaints from "../SocietyAdmin/Complaints";
 
 import "../Common/CSS/CommonClasses.css";
 import "../Common/CSS/Homepage.css";
@@ -21,7 +21,7 @@ class SocietyHeadHomepage extends React.Component {
         <Header ForHomepage="3" Name="Society Head" />
         <HomePage component="Society Head">
           {this.props.data && <ManageEntities userType={2} societyHeadId={this.props.data.person.personId}/>}
-          <Complains />
+          <Complaints />
         </HomePage>
       </Container>
     );

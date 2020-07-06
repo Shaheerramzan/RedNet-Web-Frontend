@@ -13,7 +13,7 @@ import {connect} from "react-redux";
 import {getData} from "../../actions";
 
 class SocietyAdminHomepage extends React.Component {
-  SocietyId;
+
   componentDidMount() {
     this.props.getData();
   }
@@ -23,7 +23,7 @@ class SocietyAdminHomepage extends React.Component {
       <Container fluid className="bg-img">
         <Header ForHomepage="3" Name="Society Admin" />
         <HomePage component="Society Admin">
-          {this.props.data && <ManageEntities userType={1} societyId={this.props.data.SocietyId}/>}
+          {this.props.data && <ManageEntities userType={1} societyId={this.props.data.societyId}/>}
           <Complains />
         </HomePage>
       </Container>

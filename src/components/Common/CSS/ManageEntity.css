@@ -1,57 +1,57 @@
 .red {
-    color: red;
+  color: red;
 }
 
 .createEntityTag {
-    padding-top: 25px;
-    text-align: right;
+  padding-top: 25px;
+  text-align: right;
 }
 
 .deleteIcon {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .scroll {
-    max-height: 78vh;
-    height: auto;
-    overflow: hidden scroll;
+  max-height: 78vh;
+  height: auto;
+  overflow: hidden scroll;
 }
 
 .rightR {
-    padding-right: 0;
+  padding-right: 0;
 }
 
 .leftR {
-    padding-left: 5px;
+  padding-left: 5px;
 }
 
 .createEntityCol {
-    padding-top: 10px;
-    padding-bottom: 5px;
+  padding-top: 10px;
+  padding-bottom: 5px;
 }
 
 .btn {
-    width: auto;
+  width: auto;
 }
 
 .buttonText {
-    position: center;
-    padding-bottom: 10px;
+  position: center;
+  padding-bottom: 10px;
 }
 
 .center {
-    text-align: center;
+  text-align: center;
 }
 
 .showEntityDetailText {
-    padding-right: 10px;
-    cursor: pointer;
+  padding-right: 10px;
+  cursor: pointer;
 }
 
 .show {
-    display: block;
+  display: block;
 }
 
 .hide {
-    display: none;
+  display: none;
 }

@@ -3,8 +3,12 @@ import { Col, Container, Form, Row } from "react-bootstrap";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
 
-import { createDonor, createSocietyAdmin } from "../../../actions";
-import ManageEntities from "./ManageEntities";
+import {
+  createDonor,
+  createSocietyAdmin,
+  getData,
+  setCancelState,
+} from "../../../actions";
 
 const validate = (values) => {
   const errors = {};
@@ -38,17 +42,24 @@ const validate = (values) => {
   if (!values.BloodGroup) {
     errors.BloodGroup = "Enter Blood Group";
   }
+  if (!values.LastDonatedDate) {
+    errors.LastDonatedDate = "Enter Last Blood Donated Date";
+  } else {
+    let last_donated = new Date(values.LastDonatedDate);
+    if (last_donated.getTime() > new Date().getTime()) {
+      errors.LastDonatedDate = "Enter a valid Last Blood Donated Date";
+    }
+  }
   return errors;
 };
 
 class CreateEntity extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { isCancelClicked: false };
+  componentDidMount() {
+    getData();
   }
 
   setCancel = () => {
-    this.setState({ isCancelClicked: true });
+    this.props.setCancelState(true);
   };
 
   renderField = ({
@@ -100,122 +111,137 @@ class CreateEntity extends React.Component {
       formData.append(key, value);
     }
     if (this.props.userType === 1) {
+      formData.append("Type", "1");
       this.props.createDonor(formData);
     }
     if (this.props.userType === 2) {
+      formData.append("Type", "2");
       this.props.createSocietyAdmin(formData);
     }
   };
 
   render() {
-    if (this.state.isCancelClicked === true) {
-      return <ManageEntities renderMe={true} userType={this.props.userType} />;
-    } else
-      return (
-        <div>
-          <Container>
-            <Form onSubmit={this.props.handleSubmit(this.onSubmit)}>
+    return (
+      <div>
+        <Container>
+          <Form onSubmit={this.props.handleSubmit(this.onSubmit)}>
+            <Row>
+              <Field
+                name="FirstName"
+                placeholder="Enter your first name"
+                label="First Name"
+                type="text"
+                component={this.renderField}
+              />
+              <Field
+                name="LastName"
+                placeholder="Enter your last name"
+                label="Last Name"
+                type="text"
+                component={this.renderField}
+              />
+            </Row>
+            {this.props.userType === 1 && (
               <Row>
                 <Field
-                  name="FirstName"
-                  placeholder="Enter your first name"
-                  label="First Name"
-                  type="text"
-                  component={this.renderField}
-                />
-                <Field
-                  name="LastName"
-                  placeholder="Enter your last name"
-                  label="Last Name"
-                  type="text"
+                  name="LastDonatedDate"
+                  placeholder="Enter your last donation date"
+                  label="Last Donation Date"
+                  type="date"
                   component={this.renderField}
                 />
               </Row>
-              <Row>
-                <Field
-                  name="Username"
-                  placeholder="Enter your username"
-                  label="Username"
-                  type="text"
-                  component={this.renderField}
-                />
-                <Field
-                  name="Password"
-                  placeholder="Enter your password"
-                  label="Password"
-                  type="password"
-                  component={this.renderField}
-                />
-              </Row>
-              <Row>
-                <Field
-                  name="Email"
-                  placeholder="Enter your email"
-                  label="E-mail"
-                  type="email"
-                  component={this.renderField}
-                />
-                <Field
-                  name="PhoneNumber"
-                  placeholder="Enter your Phone Number"
-                  label="Phone Number"
-                  type="text"
-                  component={this.renderField}
-                />
-              </Row>
-              <Row>
-                <Field
-                  name="City"
-                  placeholder="Enter your City"
-                  label="City"
-                  type="text"
-                  component={this.renderField}
-                />
-                <Field
-                  name="Area"
-                  placeholder="Enter your Area"
-                  label="Area"
-                  type="text"
-                  component={this.renderField}
-                />
-              </Row>
-              <Row>
-                <Field
-                  name="Gender"
-                  label="Gender"
-                  options={["female", "male"]}
-                  component={this.renderOptionField}
-                />
-                <Field
-                  name="BloodGroup"
-                  label="Blood Group"
-                  options={["O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-"]}
-                  component={this.renderOptionField}
-                />
-              </Row>
-              <div className="ui hidden divider" />
-              <Row className="justify-content-center">
-                <Col xs={2}>
-                  <button type="submit" className="btn btn-danger">
-                    Create
-                  </button>
-                </Col>
-                <Col xs={2}>
-                  <button
-                    className="btn btn-danger"
-                    onClick={this.setCancel.bind(this)}
-                  >
-                    Cancel
-                  </button>
-                </Col>
-              </Row>
-            </Form>
-          </Container>
-        </div>
-      );
+            )}
+            <Row>
+              <Field
+                name="Username"
+                placeholder="Enter your username"
+                label="Username"
+                type="text"
+                component={this.renderField}
+              />
+              <Field
+                name="Password"
+                placeholder="Enter your password"
+                label="Password"
+                type="password"
+                component={this.renderField}
+              />
+            </Row>
+            <Row>
+              <Field
+                name="Email"
+                placeholder="Enter your email"
+                label="E-mail"
+                type="email"
+                component={this.renderField}
+              />
+              <Field
+                name="PhoneNumber"
+                placeholder="Enter your Phone Number"
+                label="Phone Number"
+                type="text"
+                component={this.renderField}
+              />
+            </Row>
+            <Row>
+              <Field
+                name="City"
+                placeholder="Enter your City"
+                label="City"
+                type="text"
+                component={this.renderField}
+              />
+              <Field
+                name="Area"
+                placeholder="Enter your Area"
+                label="Area"
+                type="text"
+                component={this.renderField}
+              />
+            </Row>
+            <Row>
+              <Field
+                name="Gender"
+                label="Gender"
+                options={["female", "male"]}
+                component={this.renderOptionField}
+              />
+              <Field
+                name="BloodGroup"
+                label="Blood Group"
+                options={["O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-"]}
+                component={this.renderOptionField}
+              />
+            </Row>
+            <div className="ui hidden divider" />
+            <Row className="justify-content-center">
+              <Col xs={2}>
+                <button type="submit" className="btn btn-danger">
+                  Create
+                </button>
+              </Col>
+              <Col xs={2}>
+                <button
+                  className="btn btn-danger"
+                  onClick={this.setCancel.bind(this)}
+                >
+                  Cancel
+                </button>
+              </Col>
+            </Row>
+          </Form>
+        </Container>
+      </div>
+    );
   }
 }
 
-CreateEntity = connect(null, { createDonor, createSocietyAdmin })(CreateEntity);
+CreateEntity = connect(null, {
+  createDonor,
+  createSocietyAdmin,
+  setCancelState,
+  getData,
+})(CreateEntity);
 
 export default reduxForm({ form: "CreateEntity", validate })(CreateEntity);
