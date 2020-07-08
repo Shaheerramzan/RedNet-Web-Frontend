@@ -8,6 +8,7 @@ import LoginMainPage from "./Login/LoginMainPage";
 import SocietyAdminHomepage from "./SocietyAdmin/SocietyAdminHomepage";
 import SocietyHeadHomepage from "./SocietyHead/SocietyHeadHomepage";
 import SuperAdminHomepage from "./SuperAdmin/SuperAdminHomepage";
+import CreateSociety from "./CreateSociety/CreateSociety";
 import Complains from "./SocietyAdmin/Complaints";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -27,6 +28,7 @@ function App() {
       <Route exact path={"/society-admin/"} component={SocietyAdminHomepage} />
       <Route exact path={"/society-head/"} component={SocietyHeadHomepage} />
       <Route exact path={"/super-admin/"} component={SuperAdminHomepage} />
+      <Route exact path={"/create-society"} component={CreateSociety} />
       <Route exact path={"/test/"} component={Complains} />
     </BrowserRouter>
   );

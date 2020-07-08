@@ -1,6 +1,6 @@
 import { Row, Col, Navbar } from "react-bootstrap";
 import React from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { doLogout } from "../../../actions";
 
 import "../CSS/Header.css";
@@ -15,7 +15,7 @@ class Header extends React.Component {
 
   HeaderLogo = () => {
     return (
-      <Col className="header-left-text">
+      <Col xs={3} className="header-left-text">
         <Navbar.Text className="white">RED</Navbar.Text>
         &nbsp;
         <Navbar.Text className="red">NET</Navbar.Text>
@@ -38,9 +38,11 @@ class Header extends React.Component {
     else
       return (
         <Col className="right">
-          <Navbar.Text className="white header-right-text click">
-            {text}
-          </Navbar.Text>
+          <Link to={{ pathname: "/create-society" }}>
+            <Navbar.Text className="white header-right-text click">
+              {text}
+            </Navbar.Text>
+          </Link>
         </Col>
       );
   };
@@ -62,13 +64,20 @@ class Header extends React.Component {
             })}
           </Row>
         );
-      else if (this.props.ForHomepage === "2")
+      else if (this.props.ForHomepage === "2") {
         return (
           <Row className="main-header">
             <this.HeaderLogo />
+            {this.props.Create && (
+              <Col className="create-name">
+                <Navbar.Text className="white header-name-text">
+                  Create New Society
+                </Navbar.Text>
+              </Col>
+            )}
           </Row>
         );
-      else
+      } else
         return (
           <Row className="main-header">
             <this.HeaderLogo />

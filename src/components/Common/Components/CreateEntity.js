@@ -86,6 +86,29 @@ class CreateEntity extends React.Component {
       </Col>
     );
   };
+  renderTextAreaField = ({
+    label,
+    placeholder,
+    input,
+    type,
+    meta: { touched, error },
+  }) => {
+    return (
+      <Col className="form-group">
+        <label htmlFor={label}>{label}</label>
+        <textarea
+          {...input}
+          className="form-control"
+          placeholder={placeholder}
+        />
+        {touched && error && (
+          <div className="alert alert-danger" role="alert">
+            {error}
+          </div>
+        )}
+      </Col>
+    );
+  };
 
   renderOptionField = ({ label, input, options, meta: { touched, error } }) => {
     return (
@@ -214,6 +237,27 @@ class CreateEntity extends React.Component {
                 component={this.renderOptionField}
               />
             </Row>
+            {this.props.CreateSociety && (
+              <Row>
+                <Field
+                  name="Name"
+                  label="Society Name"
+                  placeholder="Enter name of the Society"
+                  type="text"
+                  component={this.renderField}
+                />
+              </Row>
+            )}
+            {this.props.CreateSociety && (
+              <Row>
+                <Field
+                  name="Description"
+                  label="Society Description"
+                  placeholder="Enter some detail of the Society"
+                  component={this.renderTextAreaField}
+                />
+              </Row>
+            )}
             <div className="ui hidden divider" />
             <Row className="justify-content-center">
               <Col xs={2}>

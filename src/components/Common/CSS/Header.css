@@ -22,6 +22,10 @@
   font-size: 30px;
   text-align: center;
 }
+.create-name{
+  font-size: 60px;
+  text-align: left;
+}
 .right {
   text-align: right;
 }

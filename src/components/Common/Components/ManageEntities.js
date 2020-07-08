@@ -427,7 +427,7 @@ class ManageEntities extends Component {
                 {this.props.userType === 1
                   ? "Create Donor"
                   : this.props.userType === 2
-                  ? "Create Society Admin"
+                  ? "Create SocietyAdmin"
                   : ""}
               </Button>
             </Col>
@@ -477,7 +477,15 @@ class ManageEntities extends Component {
     else
       return (
         <Container>
-          <this.renderMainHeader Heading="Create Donor" />
+          <this.renderMainHeader
+            Heading={
+              this.props.userType === 1
+                ? "Create Donor"
+                : this.props.userType === 2
+                ? "Create Society Admin"
+                : ""
+            }
+          />
           <Container className="scroll">
             <CreateEntity renderMe={true} userType={this.props.userType} />
           </Container>
