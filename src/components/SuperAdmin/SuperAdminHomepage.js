@@ -19,7 +19,7 @@ class SuperAdminHomepage extends React.Component {
         <HomePage component="Super Admin">
           <ManageEntities userType={3} />
           <ManageEntities userType={3} Super={true} />
-          <Complaints />
+          <Complaints Super={true} />
         </HomePage>
       </Container>
     );

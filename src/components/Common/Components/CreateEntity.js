@@ -9,6 +9,7 @@ import {
   getData,
   setCancelState,
 } from "../../../actions";
+import { Link } from "react-router-dom";
 
 const validate = (values) => {
   const errors = {};
@@ -50,6 +51,12 @@ const validate = (values) => {
       errors.LastDonatedDate = "Enter a valid Last Blood Donated Date";
     }
   }
+  if (!values.Name) {
+    errors.Name = "Enter a Society Name";
+  }
+  if (!values.Description) {
+    errors.Description = "Enter some detail for Society";
+  }
   return errors;
 };
 
@@ -71,7 +78,9 @@ class CreateEntity extends React.Component {
   }) => {
     return (
       <Col className="form-group">
-        <label htmlFor={label}>{label}</label>
+        <label htmlFor={label}>
+          <b>{label}</b>
+        </label>
         <input
           {...input}
           type={type}
@@ -95,7 +104,9 @@ class CreateEntity extends React.Component {
   }) => {
     return (
       <Col className="form-group">
-        <label htmlFor={label}>{label}</label>
+        <label htmlFor={label}>
+          <b>{label}</b>
+        </label>
         <textarea
           {...input}
           className="form-control"
@@ -113,7 +124,9 @@ class CreateEntity extends React.Component {
   renderOptionField = ({ label, input, options, meta: { touched, error } }) => {
     return (
       <Col className="form-group">
-        <label htmlFor={label}>{label}</label>
+        <label htmlFor={label}>
+          <b>{label}</b>
+        </label>
         <select {...input} className="form-control">
           {options.map((option, index) => {
             return <option key={index}>{option}</option>;
@@ -141,141 +154,191 @@ class CreateEntity extends React.Component {
       formData.append("Type", "2");
       this.props.createSocietyAdmin(formData);
     }
+    if (this.props.CreateSociety) {
+      formData.append("Type", "x");
+      this.props.createSocietyAdmin(formData);
+    }
   };
 
   render() {
     return (
       <div>
-        <Container>
-          <Form onSubmit={this.props.handleSubmit(this.onSubmit)}>
-            <Row>
-              <Field
-                name="FirstName"
-                placeholder="Enter your first name"
-                label="First Name"
-                type="text"
-                component={this.renderField}
-              />
-              <Field
-                name="LastName"
-                placeholder="Enter your last name"
-                label="Last Name"
-                type="text"
-                component={this.renderField}
-              />
-            </Row>
-            {this.props.userType === 1 && (
+        {!this.props.RequestFeature && (
+          <Container>
+            <Form onSubmit={this.props.handleSubmit(this.onSubmit)}>
               <Row>
                 <Field
-                  name="LastDonatedDate"
-                  placeholder="Enter your last donation date"
-                  label="Last Donation Date"
-                  type="date"
+                  name="FirstName"
+                  placeholder="Enter your first name"
+                  label="First Name"
+                  type="text"
                   component={this.renderField}
                 />
-              </Row>
-            )}
-            <Row>
-              <Field
-                name="Username"
-                placeholder="Enter your username"
-                label="Username"
-                type="text"
-                component={this.renderField}
-              />
-              <Field
-                name="Password"
-                placeholder="Enter your password"
-                label="Password"
-                type="password"
-                component={this.renderField}
-              />
-            </Row>
-            <Row>
-              <Field
-                name="Email"
-                placeholder="Enter your email"
-                label="E-mail"
-                type="email"
-                component={this.renderField}
-              />
-              <Field
-                name="PhoneNumber"
-                placeholder="Enter your Phone Number"
-                label="Phone Number"
-                type="text"
-                component={this.renderField}
-              />
-            </Row>
-            <Row>
-              <Field
-                name="City"
-                placeholder="Enter your City"
-                label="City"
-                type="text"
-                component={this.renderField}
-              />
-              <Field
-                name="Area"
-                placeholder="Enter your Area"
-                label="Area"
-                type="text"
-                component={this.renderField}
-              />
-            </Row>
-            <Row>
-              <Field
-                name="Gender"
-                label="Gender"
-                options={["female", "male"]}
-                component={this.renderOptionField}
-              />
-              <Field
-                name="BloodGroup"
-                label="Blood Group"
-                options={["O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-"]}
-                component={this.renderOptionField}
-              />
-            </Row>
-            {this.props.CreateSociety && (
-              <Row>
                 <Field
-                  name="Name"
-                  label="Society Name"
-                  placeholder="Enter name of the Society"
+                  name="LastName"
+                  placeholder="Enter your last name"
+                  label="Last Name"
                   type="text"
                   component={this.renderField}
                 />
               </Row>
-            )}
-            {this.props.CreateSociety && (
+              {this.props.userType === 1 && (
+                <Row>
+                  <Field
+                    name="LastDonatedDate"
+                    placeholder="Enter your last donation date"
+                    label="Last Donation Date"
+                    type="date"
+                    component={this.renderField}
+                  />
+                </Row>
+              )}
               <Row>
                 <Field
-                  name="Description"
-                  label="Society Description"
-                  placeholder="Enter some detail of the Society"
+                  name="Username"
+                  placeholder="Enter your username"
+                  label="Username"
+                  type="text"
+                  component={this.renderField}
+                />
+                <Field
+                  name="Password"
+                  placeholder="Enter your password"
+                  label="Password"
+                  type="password"
+                  component={this.renderField}
+                />
+              </Row>
+              <Row>
+                <Field
+                  name="Email"
+                  placeholder="Enter your email"
+                  label="E-mail"
+                  type="email"
+                  component={this.renderField}
+                />
+                <Field
+                  name="PhoneNumber"
+                  placeholder="Enter your Phone Number"
+                  label="Phone Number"
+                  type="text"
+                  component={this.renderField}
+                />
+              </Row>
+              <Row>
+                <Field
+                  name="City"
+                  placeholder="Enter your City"
+                  label="City"
+                  type="text"
+                  component={this.renderField}
+                />
+                <Field
+                  name="Area"
+                  placeholder="Enter your Area"
+                  label="Area"
+                  type="text"
+                  component={this.renderField}
+                />
+              </Row>
+              <Row>
+                <Field
+                  name="Gender"
+                  label="Gender"
+                  options={["female", "male"]}
+                  component={this.renderOptionField}
+                />
+                <Field
+                  name="BloodGroup"
+                  label="Blood Group"
+                  options={["O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-"]}
+                  component={this.renderOptionField}
+                />
+              </Row>
+              {this.props.CreateSociety && (
+                <Row>
+                  <Field
+                    name="Name"
+                    label="Society Name"
+                    placeholder="Enter name of the Society"
+                    type="text"
+                    component={this.renderField}
+                  />
+                </Row>
+              )}
+              {this.props.CreateSociety && (
+                <Row>
+                  <Field
+                    name="Description"
+                    label="Society Description"
+                    placeholder="Enter some detail of the Society"
+                    component={this.renderTextAreaField}
+                  />
+                </Row>
+              )}
+              <div className="ui hidden divider" />
+              <Row className="justify-content-center">
+                <Col xs={2}>
+                  <button type="submit" className="btn btn-danger">
+                    Create
+                  </button>
+                </Col>
+                {!this.props.CreateSociety && (
+                  <Col xs={2}>
+                    <button
+                      className="btn btn-danger"
+                      onClick={this.setCancel.bind(this)}
+                    >
+                      Cancel
+                    </button>
+                  </Col>
+                )}
+                {this.props.CreateSociety && (
+                  <Col xs={2}>
+                    <Link className="btn btn-danger" to={{ pathname: "/" }}>
+                      Cancel
+                    </Link>
+                  </Col>
+                )}
+              </Row>
+              <div className="ui hidden divider" />
+            </Form>
+          </Container>
+        )}
+        {this.props.RequestFeature && (
+          <Container>
+            <h1>Request Feature</h1>
+            <Form onSubmit={this.props.handleSubmit(this.onSubmit)}>
+              <Row>
+                <Field
+                  name="FeatureName"
+                  placeholder="Enter the name for your feature"
+                  label="Feature Name"
+                  type="text"
+                  component={this.renderField}
+                />
+              </Row>
+              <Row>
+                <Field
+                  name="FeatureDescription"
+                  placeholder="Enter description for your feature"
+                  label="Feature Description"
+                  type="text"
                   component={this.renderTextAreaField}
                 />
               </Row>
-            )}
-            <div className="ui hidden divider" />
-            <Row className="justify-content-center">
-              <Col xs={2}>
-                <button type="submit" className="btn btn-danger">
-                  Create
-                </button>
-              </Col>
-              <Col xs={2}>
-                <button
-                  className="btn btn-danger"
-                  onClick={this.setCancel.bind(this)}
-                >
-                  Cancel
-                </button>
-              </Col>
-            </Row>
-          </Form>
-        </Container>
+              <div className="ui hidden divider" />
+              <Row className="justify-content-center">
+                <Col xs={2}>
+                  <button type="submit" className="btn btn-danger">
+                    Add
+                  </button>
+                </Col>
+              </Row>
+              <div className="ui hidden divider" />
+            </Form>
+          </Container>
+        )}
       </div>
     );
   }

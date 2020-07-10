@@ -25,7 +25,7 @@ class Complaints extends Component {
         <div>
           <Row className="center">
             <Col xs={1}>{From}</Col>
-            <Col xs={1}>{About}</Col>
+            {!this.props.Super && <Col xs={1}>{About}</Col>}
             <Col
               xs={10}
               className="cursor"
@@ -66,7 +66,7 @@ class Complaints extends Component {
       return (
         <Row className="center">
           <Col xs={1}>{From}</Col>
-          <Col xs={1}>{About}</Col>
+          {!this.props.Super && <Col xs={1}>{About}</Col>}
           <Col xs={10}>{Message}</Col>
         </Row>
       );
@@ -78,12 +78,21 @@ class Complaints extends Component {
       return (
         <ul className="list-group">
           <li className="list-group-item font-weight-bold" key="0">
-            <this.renderComplaintInside
-              From="From"
-              About="About"
-              Message="Complaint Message"
-              Header={true}
-            />
+            {!this.props.Super && (
+              <this.renderComplaintInside
+                From="From"
+                About="About"
+                Message="Complaint Message"
+                Header={true}
+              />
+            )}
+            {this.props.Super && (
+              <this.renderComplaintInside
+                From="From"
+                Message="Feedback"
+                Header={true}
+              />
+            )}
           </li>
           {Complaints.map((complaint) => {
             return (
@@ -118,7 +127,7 @@ class Complaints extends Component {
       <Container className="overflowContainer">
         <Row className="justify-content-center">
           <Col xs={2}>
-            <h2>Complaints</h2>
+            <h2>{this.props.Super ? "Feedback" : "Complaints"}</h2>
           </Col>
         </Row>
         <this.renderComplaints Complaints={this.props.Complaints} />

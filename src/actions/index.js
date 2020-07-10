@@ -11,6 +11,17 @@ export const getDonors = (id) => async (dispatch) => {
   dispatch({ type: "GET_DONORS", payload: response.data.donors });
 };
 
+export const createDonor = (data) => async (dispatch) => {
+  const response = await BackendLink.post("/create.action", data);
+  if (response.status === 200)
+    dispatch({ type: "ADD_DONORS", payload: response.data });
+};
+
+export const deleteDonor = (id) => async (dispatch) => {
+  const response = await TemplateLink.delete(`/posts/${id}`);
+  if (response.status === 200) dispatch({ type: "DELETE_DONOR", payload: id });
+};
+
 export const getComplaints = () => async (dispatch) => {
   const response = await TemplateLink.get("/posts");
   dispatch({ type: "GET_COMPLAINTS", payload: response.data });
@@ -23,17 +34,6 @@ export const resolveComplaint = ({ Id, Data }) => async (dispatch) => {
     payload: response.data,
     Id: Id,
   });
-};
-
-export const createDonor = (data) => async (dispatch) => {
-  const response = await BackendLink.post("/create.action", data);
-  if (response.status === 200)
-    dispatch({ type: "ADD_DONORS", payload: response.data });
-};
-
-export const deleteDonor = (id) => async (dispatch) => {
-  const response = await TemplateLink.delete(`/posts/${id}`);
-  if (response.status === 200) dispatch({ type: "DELETE_DONOR", payload: id });
 };
 
 export const getSocieties = () => async (dispatch) => {
@@ -59,6 +59,36 @@ export const deleteSociety = (id) => async (dispatch) => {
 export const getSociety = (id) => async (dispatch) => {
   const response = await BackendLink.get(`/society?Id=${id}`);
   dispatch({ type: "GET_SOCIETY", payload: response.data.society });
+};
+
+export const getSocietyRequests = () => async (dispatch) => {
+  const response = await BackendLink.get("/societyRequests");
+  dispatch({
+    type: "GET_SOCIETY_REQUESTS",
+    payload: response.data.societyRequests,
+  });
+};
+
+export const createSocietyRequest = (data) => async (dispatch) => {
+  const response = await BackendLink.post("/create.action", data);
+  if (response.status === 200)
+    dispatch({ type: "ADD_SOCIETY_REQUEST", payload: response.data });
+};
+
+export const deleteSocietyRequest = (id) => async (dispatch) => {
+  const response = await BackendLink.delete(`/delete?Id=${id}&Type=4`);
+  if (response.status === 200)
+    dispatch({ type: "DELETE_SOCIETY_REQUEST", payload: id });
+};
+
+export const getSocietyRequest = (id) => async (dispatch) => {
+  const response = await BackendLink.get(
+    `/societyRequest?societyRequestId=${id}`
+  );
+  dispatch({
+    type: "GET_SOCIETY_REQUEST",
+    payload: response.data.societyRequest,
+  });
 };
 
 export const getSocietyAdmins = (id) => async (dispatch) => {

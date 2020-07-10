@@ -5,6 +5,7 @@ import loginReducer from "./loginReducer";
 import complaintReducer from "./complaintReducer";
 import societyAdminReducer from "./societyAdminReducer";
 import societyReducer from "./societyReducer";
+import societyRequestReducer from "./societyRequestReducer";
 
 const appReducer = combineReducers({
   donors: donorsReducer,
@@ -13,15 +14,18 @@ const appReducer = combineReducers({
   complaints: complaintReducer,
   societyAdmin: societyAdminReducer,
   society: societyReducer,
+  societyRequest: societyRequestReducer,
 });
 
 const rootReducer = (state, action) => {
-   if(action.type === "LOGOUT")
-   {
-     state.societyAdmin = undefined;
-     state.donors = undefined;
-   }
-   return appReducer(state, action);
+  if (action.type === "LOGOUT") {
+    state.societyAdmin = undefined;
+    state.donors = undefined;
+    state.complaints = undefined;
+    state.society = undefined;
+    state.societyRequest = undefined;
+  }
+  return appReducer(state, action);
 };
 
 export default rootReducer;
